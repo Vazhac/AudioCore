@@ -1,15 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const apiRouter = require('./api');
+const apiRoutes = require('./api')
 
-router.use('/api', apiRouter);
+router.use('/api', apiRoutes);
 
-router.delete(
-    '/',
-    (_req, res) => {
-        res.clearCookie('token');
-        return res.json({ message: 'success' });
-    }
-);
+router.get('/hello/world', function (req, res) {
+    res.cookie('XSRF-TOKEN', req.csrfToken());
+    res.send('Hello World!');
+});
 
 module.exports = router;
