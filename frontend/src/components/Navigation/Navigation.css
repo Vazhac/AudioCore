@@ -1,0 +1,57 @@
+li {
+    color: black;
+  }
+
+  #nav-bar{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f2f2f2;
+  }
+
+  #nav-links{
+    display: flex;
+    justify-content: space-between;
+    width: 15%;
+  }
+
+  #top-logo {
+    height: 100%;
+    width: 100%;
+    margin-right: -10px;
+  }
+  #title-and-search{
+    display: flex;
+    width: 40%;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  #title {
+    display: flex;
+    text-decoration: none;
+    color: Orange;
+  }
+
+  #search-bar {
+    height: 40px;
+    margin-left: 20px;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 5px;
+  }
+
+  #my-profile-button {
+    background-color: rgba(255, 153, 0, 0.726);
+    border-radius: 5px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  #my-profile-button:active {
+    box-shadow: none;
+  }
