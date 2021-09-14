@@ -70,6 +70,21 @@ export const signup = (user) => async (dispatch) => {
     return response;
 };
 
+export const upload = (song) => async (dispatch) => {
+    const { title, album, url } = song;
+    const response = await csrfFetch("/api/songs", {
+        method: "POST",
+        body: JSON.stringify({
+            title,
+            url,
+            album,
+        }),
+    });
+    const data = await response.json();
+    dispatch(setUser(data.user));
+    return response;
+};
+
 export const logout = () => async (dispatch) => {
     const response = await csrfFetch('/api/session', {
         method: 'DELETE',

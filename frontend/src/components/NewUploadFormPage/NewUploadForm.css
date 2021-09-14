@@ -1,0 +1,36 @@
+#new-upload-form {
+    width: 50%;
+    height: 100%;
+    display: block;
+    text-align: center;
+    margin: 100px auto;
+    background-color: #fafafa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+#new-upload-form label {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#new-upload-form input {
+    width: 100%;
+    height: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+#new-upload-form button {
+    width: 20%;
+    height: 30px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    background-color: #f5f5f5;
+    color: #000;
+}

@@ -19,7 +19,7 @@ function Navigation({ isLoaded }) {
         sessionLinks = (
             <>
                 <LoginFormModal />
-                <NavLink to="/signup">Sign Up</NavLink>
+                <NavLink id="sign-up-nav-link" to="/signup">Create account</NavLink>
             </>
         );
     }
@@ -32,6 +32,7 @@ function Navigation({ isLoaded }) {
                 </NavLink>
                 <Searchbar />
             </div>
+            <NavLink id="new-upload-nav-link" to="/upload">Upload</NavLink>
             <div id="nav-links" >
                 {isLoaded && sessionLinks}
             </div>

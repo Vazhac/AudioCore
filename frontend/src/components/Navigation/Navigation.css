@@ -1,11 +1,16 @@
+html {
+  background-color: gray;
+}
+
 li {
     color: black;
   }
 
   #nav-bar{
     display: flex;
-    width: 100%;
-    justify-content: space-between;
+    width: 80%;
+    justify-content: space-around;
+    margin: auto;
     align-items: center;
     background-color: #f2f2f2;
   }
@@ -42,6 +47,18 @@ li {
     border-radius: 5px;
   }
 
+  #new-upload-nav-link {
+    background-color: rgba(255, 153, 0, 0.726);
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    height: 40px;
+    width: 100px;
+    padding: 5px;
+    text-decoration: none;
+    color: black;
+  }
+
   #my-profile-button {
     background-color: rgba(255, 153, 0, 0.726);
     border-radius: 5px;
@@ -49,7 +66,8 @@ li {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    padding: 5px;
+    text-align: center;
   }
 
   #my-profile-button:active {
