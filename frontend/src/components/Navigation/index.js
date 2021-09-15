@@ -5,7 +5,7 @@ import ProfileButton from './ProfileButton.js';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 import Searchbar from './Searchbar.js';
-import Title from './HomeButton.js';
+import LogoButton from './LogoButton.js';
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
@@ -28,8 +28,10 @@ function Navigation({ isLoaded }) {
         <div id="nav-bar">
             <div id="title-and-search">
                 <NavLink exact to="/">
-                    <Title />
+                    <LogoButton />
                 </NavLink>
+                <NavLink id="home-nav-link" to="/">Home</NavLink>
+                <NavLink id="discover-nav-link" to="/songs">Discover</NavLink>
                 <Searchbar />
             </div>
             <NavLink id="new-upload-nav-link" to="/upload">Upload</NavLink>

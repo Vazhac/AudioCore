@@ -3,7 +3,7 @@ const router = express.Router();
 let { User, Song } = require('../../db/models');
 const { asyncHandler } = require('./utils')
 
-//GET /api/songs - Get the list of all songs
+//GET /api/songs - Get the list of all songs in the database
 router.get('/', asyncHandler(async (req, res) => {
     const songs = await Song.findAll({
         include: [{
@@ -27,7 +27,8 @@ router.get('/:id', asyncHandler(async (req, res) => {
 
 //POST /api/songs - Create a new song and return the page with the new song
 router.post('/', asyncHandler(async (req, res) => {
-    const song = await Song.create(req.body)
+    const { userId, title, album, url } = req.body;
+    const song = await Song.create({ userId, title, album, url });
     res.json(song)
 }))
 

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import * as sessionActions from "../../store/session";
 import './NewUploadForm.css';
 import LoginForm from "../LoginFormModal/LoginForm";
 import { Modal } from "../../context/Modal";
+import { createSong } from '../../store/songs'
 
 //ask for title and description and url for song
 function NewUploadFormPage() {
@@ -16,60 +16,78 @@ function NewUploadFormPage() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const song = {
+            title,
+            album,
+            url,
+            userId: sessionUser.id
+        }
         setErrors([]);
-        return dispatch(sessionActions.upload({ title, url, album }))
-            .catch(async (res) => {
-                const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
-            });
+        if (title === "" || url === "") {
+            setErrors(["Please fill out all required fields"]);
+        } else {
+            dispatch(createSong(song))
+            setTitle("");
+            setAlbum("");
+            setUrl("");
+        }
     };
-    //if a user is not logged in, return error message and login form
     if (!sessionUser) {
         return (
             <Modal>
-                Please log in to upload a song
                 <LoginForm />
             </Modal>
         );
     } else {
-        //if user is logged in, return upload form
         return (
-            <form id="new-upload-form" onSubmit={handleSubmit}>
-                <ul>
-                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                </ul>
+            <div className="new-upload-form-page">
                 <h1>Upload a new song</h1>
-                <label>
-                    Title:
-                    <input
-                        type="text"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        required
-                    />
-                </label>
-                <label>
-                    URL:
-                    <input
-                        type="text"
-                        value={url}
-                        onChange={(e) => setUrl(e.target.value)}
-                        required
-                    />
-                </label>
-                <label>
-                    Album:
-                    <input
-                        type="text"
-                        value={album}
-                        onChange={(e) => setAlbum(e.target.value)}
-                        required
-                    />
-                </label>
-                <button type="submit">Upload</button>
-            </form>
+                <form id="new-upload-form-container" onSubmit={handleSubmit}>
+                    {errors.length > 0 && (
+                        <div className="new-upload-form-page-container-errors">
+                            {errors.map((error, index) => (
+                                <p key={index}>{error}</p>
+                            ))}
+                        </div>
+                    )}
+                    <div className="new-upload-form-elements">
+                        <div className="new-upload-form-page-container-form-title">
+                            <label htmlFor="title">Title</label>
+                            <input
+                                type="text"
+                                name="title"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                            />
+                        </div>
+                        <div className="new-upload-form-page-container-form-album">
+                            <label htmlFor="album">Album</label>
+                            <input
+                                type="text"
+                                name="album"
+                                value={album}
+                                onChange={(e) => setAlbum(e.target.value)}
+                            />
+                        </div>
+                        <div className="new-upload-form-page-container-form-url">
+                            <label htmlFor="url">URL</label>
+                            <input
+                                type="text"
+                                name="url"
+                                value={url}
+                                onChange={(e) => setUrl(e.target.value)}
+                            />
+                        </div>
+                        <div className="new-upload-form-page-container-form-submit">
+                            <button type="submit">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         );
     }
 }
+
+
 
 export default NewUploadFormPage;

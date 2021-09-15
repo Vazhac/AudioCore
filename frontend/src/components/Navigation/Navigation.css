@@ -1,5 +1,8 @@
+/* remove default html styling */
+
 html {
-  background-color: gray;
+  background-color: black;
+  color: white;
 }
 
 li {
@@ -9,15 +12,17 @@ li {
   #nav-bar{
     display: flex;
     width: 80%;
-    justify-content: space-around;
+    height: 60px;
     margin: auto;
+    justify-content: space-around;
     align-items: center;
-    background-color: #f2f2f2;
+    background-color: #aeb2d8;
   }
 
   #nav-links{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 15%;
   }
 
@@ -26,6 +31,7 @@ li {
     width: 100%;
     margin-right: -10px;
   }
+
   #title-and-search{
     display: flex;
     width: 40%;
@@ -37,39 +43,95 @@ li {
     display: flex;
     text-decoration: none;
     color: Orange;
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    margin-left: 10px;
+
   }
 
   #search-bar {
-    height: 40px;
+    height: 30px;
     margin-left: 20px;
     width: 100%;
     border: 1px solid black;
     border-radius: 5px;
   }
-
-  #new-upload-nav-link {
+/* //center text in nav-links// */
+  #home-nav-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: rgba(255, 153, 0, 0.726);
     border-radius: 5px;
     border: none;
     text-align: center;
     height: 40px;
-    width: 100px;
+    width: 33%;
     padding: 5px;
     text-decoration: none;
     color: black;
+    font-size: 20px;
+    font-weight: bold;
   }
 
-  #my-profile-button {
-    background-color: rgba(255, 153, 0, 0.726);
-    border-radius: 5px;
-    border: none;
+  #discover-nav-link {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: rgba(255, 153, 0, 0.726);
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    height: 40px;
+    width: 33%;
     padding: 5px;
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  #new-upload-nav-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 153, 0, 0.726);
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    height: 40px;
+    width: 5%;
+    padding: 5px;
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  #my-profile-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 153, 0, 0.726);
+    border-radius: 5px;
+    border: none;
+    height: 40px;
+    width: 100%;
+    padding: 5px;
+    color: black;
+    font-weight: bold;
     text-align: center;
   }
 
-  #my-profile-button:active {
-    box-shadow: none;
-  }
+#my-profile-button:hover,
+#my-profile-button:focus,
+#new-upload-nav-link:hover,
+#new-upload-nav-link:focus,
+#discover-nav-link:hover,
+#discover-nav-link:focus,
+#home-nav-link:hover,
+#home-nav-link:focus {
+  background-color: black;
+  color: white;
+}
