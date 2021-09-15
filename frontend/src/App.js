@@ -7,12 +7,15 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SongsPage from "./components/SongsPage";
 import HomePage from "./components/HomePage";
+import SongPage from "./components/SongPage";
+import { getSongs } from "./store/songs"
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    dispatch(getSongs())
   }, [dispatch]);
 
   return (
@@ -23,8 +26,11 @@ function App() {
           <Route exact path="/">
             <HomePage />
           </Route>
-          <Route path="/songs">
+          <Route exact path="/songs">
             <SongsPage />
+          </Route>
+          <Route path="/songs/:id">
+            <SongPage />
           </Route>
           <Route path="/signup">
             <SignupFormPage />

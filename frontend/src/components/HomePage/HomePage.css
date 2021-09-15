@@ -10,6 +10,11 @@ footer {
   color: white;
 }
 
-footer > * {
+footer > p {
   margin: 10px 10px;
+  color: white;
+}
+
+footer a{
+  color: white;
 }

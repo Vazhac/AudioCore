@@ -25,18 +25,22 @@ function Navigation({ isLoaded }) {
     }
 
     return (
-        <div id="nav-bar">
-            <div id="title-and-search">
-                <NavLink exact to="/">
-                    <LogoButton />
-                </NavLink>
-                <NavLink id="home-nav-link" to="/">Home</NavLink>
-                <NavLink id="discover-nav-link" to="/songs">Discover</NavLink>
-                <Searchbar />
-            </div>
-            <NavLink id="new-upload-nav-link" to="/upload">Upload</NavLink>
-            <div id="nav-links" >
-                {isLoaded && sessionLinks}
+        <div id="nav-bar-container">
+            <div id="nav-bar">
+                <div id="left-nav-links">
+                    <NavLink exact to="/">
+                        <LogoButton />
+                    </NavLink>
+                    <NavLink id="home-nav-link" to="/">Home</NavLink>
+                    <NavLink id="discover-nav-link" to="/songs">Discover</NavLink>
+                </div>
+                <div id="search-bar-container">
+                    <Searchbar />
+                </div>
+                <NavLink id="new-upload-nav-link" to="/upload">Upload</NavLink>
+                <div id="right-nav-links" >
+                    {isLoaded && sessionLinks}
+                </div>
             </div>
         </div >
     );
