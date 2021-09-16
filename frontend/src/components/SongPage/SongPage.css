@@ -1,3 +1,11 @@
 .song-page {
   color: white;
 }
+
+.song-page__song-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #1a1a1a;
+}

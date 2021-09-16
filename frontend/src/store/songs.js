@@ -4,6 +4,8 @@ const SET_SONGS = 'songs/SET_SONGS'
 
 const CREATE_SONG = 'songs/CREATE_SONG'
 
+const REMOVE_SONG = 'songs/REMOVE_SONG'
+
 const setSongsAction = (songs) => {
   return {
     type: SET_SONGS,
@@ -16,6 +18,21 @@ const createSongAction = (song) => {
     type: CREATE_SONG,
     payload: song,
   };
+};
+
+const removeSong = (song) => {
+  return {
+    type: REMOVE_SONG,
+    payload: song
+  };
+};
+
+export const deleteSong = (song) => async (dispatch) => {
+  const response = await csrfFetch(`/api/songs/${song.id}`, {
+    method: 'DELETE',
+  });
+  dispatch(removeSong());
+  return response;
 };
 
 export const getSongs = () => async (dispatch) => {
@@ -44,15 +61,17 @@ const songsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case SET_SONGS:
-      newState = Object.assign({}, state);
-      newState.allSongs = action.payload;
-      return newState;
+      return { ...state, allSongs: action.payload }
     case CREATE_SONG:
       newState = Object.assign({}, state);
       newState.title = action.payload.title;
       newState.album = action.payload.album;
       newState.url = action.payload.url;
       newState.id = action.payload.id;
+      return newState;
+    case REMOVE_SONG:
+      newState = Object.assign({}, state);
+      newState.song = null;
       return newState;
     default:
       return state;
