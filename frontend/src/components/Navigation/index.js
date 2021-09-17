@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton.js';
 import LoginFormModal from '../LoginFormModal';
+import UploadFormModal from '../UploadFormModal';
 import './Navigation.css';
 import Searchbar from './Searchbar.js';
 import LogoButton from './LogoButton.js';
@@ -14,6 +15,7 @@ function Navigation({ isLoaded }) {
     if (sessionUser) {
         sessionLinks = (
             <ProfileButton user={sessionUser} />
+
         );
     } else {
         sessionLinks = (
@@ -32,12 +34,13 @@ function Navigation({ isLoaded }) {
                         <LogoButton />
                     </NavLink>
                     <NavLink id="home-nav-link" to="/">Home</NavLink>
-                    <NavLink id="discover-nav-link" to="/songs">Discover</NavLink>
+                    <NavLink id="songs-nav-link" to="/songs">Songs</NavLink>
+                    <NavLink id="albums-nav-link" to="/albums">Albums</NavLink>
                 </div>
                 <div id="search-bar-container">
                     <Searchbar />
                 </div>
-                <NavLink id="new-upload-nav-link" to="/upload">Upload</NavLink>
+                <UploadFormModal />
                 <div id="right-nav-links" >
                     {isLoaded && sessionLinks}
                 </div>

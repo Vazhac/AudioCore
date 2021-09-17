@@ -89,7 +89,7 @@ li {
   font-weight: bold;
 }
 
-#discover-nav-link {
+#songs-nav-link {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -105,7 +105,7 @@ li {
   font-weight: bold;
 }
 
-#new-upload-nav-link {
+#albums-nav-link {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -119,6 +119,23 @@ li {
   color: gray;
   font-size: 20px;
   font-weight: bold;
+}
+
+#upload-nav-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #333;
+  border-left: solid 1px rgba(0,0,0,.5);
+  border-right: solid 1px rgba(0,0,0,.5);
+  text-align: center;
+  height: 46px;
+  width: 104px;
+  text-decoration: none;
+  color: gray;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: 'Lato';
 }
 
 #my-profile-button {
@@ -126,26 +143,31 @@ li {
   justify-content: center;
   align-items: center;
   background-color: #333;
-  border: solid 1px rgba(0,0,0,.5);
-  height: 100%;
-  width: 100%;
-  padding: 5px;
-  color: gray;
-  font-weight: bold;
+  border-left: solid 1px rgba(0,0,0,.5);
+  border-right: solid 1px rgba(0,0,0,.5);
   text-align: center;
+  height: 46px;
+  width: 104px;
+  text-decoration: none;
+  color: gray;
+  /* font-size: 20px; */
+  font-family: 'Lato';
+  font-weight: bold;
 }
 
 #my-profile-button:hover,
-#new-upload-nav-link:hover,
-#discover-nav-link:hover,
-#home-nav-link:hover {
+#upload-nav-link:hover,
+#songs-nav-link:hover,
+#home-nav-link:hover,
+#albums-nav-link:hover {
   color: white;
 }
 
 #my-profile-button:focus,
-#new-upload-nav-link:focus,
-#discover-nav-link:focus,
-#home-nav-link:focus {
+#upload-nav-link:focus,
+#songs-nav-link:focus,
+#home-nav-link:focus,
+#albums-nav-link:focus {
   background-color: black;
   color: white;
 }

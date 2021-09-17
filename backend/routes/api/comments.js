@@ -5,7 +5,7 @@ const { asyncHandler } = require('./utils')
 
 //GET /api/songs/:id/comments - Get all comments for a song with the given id
 router.get('/:id/comments', asyncHandler(async (req, res) => {
-  const song = await Song.findById(req.params.id)
+  const song = await Song.findByPk(req.params.id)
   const comments = await Comment.findAll({
     where: {
       songId: song.id
@@ -30,13 +30,15 @@ router.post('/:id/comments', asyncHandler(async (req, res) => {
 
 //PUT /api/songs/:id/comments/:commentId - Update a comment for a song if the user is the author
 router.put('/:id/comments/:commentId', asyncHandler(async (req, res) => {
-  let song = await Song.findByPk(req.params.id)
   let comment = await Comment.findByPk(req.params.commentId)
-  if (comment.userId === req.user.id) {
-    await comment.update(req.body)
-    res.json(comment)
+  let user = await User.findByPk(req.session.userId)
+  if (comment.userId === user.id) {
+    let updatedComment = await comment.update({
+      content: req.body.content,
+    })
+    res.json(updatedComment)
   } else {
-    res.status(403).send("You are not the author of this comment")
+    res.status(403).send("You are not authorized to edit this comment")
   }
 }))
 
