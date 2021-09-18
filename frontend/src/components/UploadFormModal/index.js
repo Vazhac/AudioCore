@@ -9,26 +9,25 @@ function UploadFormModal() {
     const [showModal, setShowModal] = useState(false);
     const sessionUser = useSelector((state) => state.session.user);
 
-    if (!sessionUser) {
-        return (
-            <Modal>
-                <LoginForm />
-            </Modal>
-        );
-    } else {
-        return (
-            <>
-                <button id="upload-nav-link" onClick={() => setShowModal(true)}>
-                    Upload
-                </button>
-                {showModal && (
-                    <Modal onClose={() => setShowModal(false)}>
-                        <UploadForm />
-                    </Modal>
-                )}
-            </>
-        );
-    }
+    return (
+        <>
+            <button id="upload-nav-link" onClick={() => setShowModal(true)}>
+                Upload
+            </button>
+            {showModal && (
+                <>{
+                    sessionUser ? (
+                        <Modal onClose={() => setShowModal(false)}>
+                            <UploadForm />
+                        </Modal>
+                    ) : (
+                        <Modal >
+                            <LoginForm />
+                        </Modal>)
+                }</>
+            )}
+        </>
+    );
 }
 
 export default UploadFormModal;

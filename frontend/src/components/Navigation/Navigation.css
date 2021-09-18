@@ -20,6 +20,7 @@ li {
   background-color: #333;
   padding: 0;
   margin: 0;
+  /* position: absolute; */
 }
 
 #nav-bar{
@@ -153,6 +154,7 @@ li {
   /* font-size: 20px; */
   font-family: 'Lato';
   font-weight: bold;
+  /* z-index: 1; */
 }
 
 #my-profile-button:hover,

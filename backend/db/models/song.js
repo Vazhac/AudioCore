@@ -42,6 +42,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'albumId',
       onDelete: 'CASCADE' // delete song if album is deleted
     });
+    Song.hasMany(models.Comment, {
+      foreignKey: 'songId',
+      onDelete: 'CASCADE' // delete song if comment is deleted
+    });
   };
   return Song;
 };

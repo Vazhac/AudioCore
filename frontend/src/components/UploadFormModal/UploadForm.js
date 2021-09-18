@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import './UploadForm.css';
-import { createSong } from '../../store/song'
+import { createSong } from '../../store/songs'
 
 //ask for title and description and url for song
 function UploadForm() {

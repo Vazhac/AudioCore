@@ -1,61 +1,126 @@
 // Display an individual song
-import React from "react";
+
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom"
 import "./SongPage.css"
-import { deleteSong } from '../../store/song'
+import { deleteSong } from '../../store/songs'
 import EditFormModal from '../EditFormModal'
+import { getComments } from '../../store/comments'
+import { createComment } from '../../store/comment'
+import { fetchSongs } from '../../store/songs'
+import Navigation from '../Navigation';
+import AudioPlayer from '../AudioPlayer'
 
 function SongPage() {
-  const dispatch = useDispatch();
-  let { id } = useParams();
-  const history = useHistory();
-  const allSongs = useSelector((state) => state.songs.songs);
-  const allComments = useSelector((state) => state.comments.comments);
-  const allUsers = useSelector((state) => state.users.users);
-  console.log(allComments)
+  const dispatch = useDispatch()
+  const [comment, setComment] = useState('')
+  const history = useHistory()
+  const { id } = useParams()
+  const songs = useSelector(state => state.songs.songs)
+  const comments = useSelector(state => state.comments.comments)
+  const user = useSelector(state => state.session.user)
+
+  useEffect(() => {
+    dispatch(fetchSongs())
+    dispatch(getComments(+id))
+  }, [dispatch])
+
+
+  const handleDelete = () => {
+    if (id) {
+      dispatch(deleteSong(+id))
+      history.push('/')
+    }
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const newComment = {
+      id: +id,
+      body: comment,
+      userId: user.id
+    }
+    dispatch(createComment(newComment))
+  }
+
+  const allComments = [];
+
+  for (let key in comments) {
+    allComments.push(comments[key])
+  }
+
 
   return (
-    <div className="song-page">
-      <div className="song-page__song-info">
-        {allSongs?.map((song) => {
-          return (
-            ((+id === song.id)) ? (
-              <div>
-                <h1 className="song-page__song-info__title">{song.title}</h1>
-                <h1 className="song-page__song-info__album">{song.album}</h1>
-                <h1 className="song-page__song-info__URL">{song.url}</h1>
-                {(<EditFormModal song={song} />)}
-                <button onClick={() => {
-                  dispatch(deleteSong(song))
-                  return history.push('/songs');
-                }}>Delete Song</button>
-              </div>
-            ) : <></>
-          )
-        })}
-      </div>
-      <div>
-        <h1>Comments</h1>
-        {allComments?.map((comment) => {
-          return (
-            ((+id === comment?.songId)) ? (
-              <>
-                <div className="song-page__comments">
-                  <h1 className="song-page__comments__Username">{comment.comment}</h1>
-                  {allUsers?.map((user) => {
-                    return (
-                      ((+comment.userId === user.id)) ? (
-                        <>
-                          <div className="song-page__comments__Username">{user.username}</div>
-                          ) : <></>
-                          )
-                })}
-                          ) : <></>
-                        </>
-                      )})}
+    <div className="SongPage">
+      <Navigation />
+      <div className="song-page">
+        <div className="song-page-header">
+          <div className="song-page-header-left">
+            {songs?.map(song => {
+              {
+                if (song.id === +id) {
+                  return (
+                    <div className="song-page-header-left-song-name">
+                      <h1>{song?.title}</h1>
+                      <h2>{song?.url}</h2>
+                      <div className="song-page-container">
+                        <div className="song-page-container-left">
+                          <button onClick={() => history.push("/songs")}>Back to Songs</button>
+                          <div className="song-page-container-right-edit">
+                            {user?.id === song.userId &&
+                              <EditFormModal song={song} />}
+                          </div>
+                          <div className="song-page-container-right-delete">
+                            <button onClick={handleDelete}>Delete</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                }
+              }
+            })}
+          </div>
+          <div className="song-page-body">
+            <div className="song-page-body-left">
+              <div className="song-page-body-left-lyrics">
+                <h3>Comments</h3>
+                {/* write a comment form */}
+                <form onSubmit={handleSubmit} >
+                  <input
+                    type="text"
+                    placeholder="Write a comment"
+                    name="comment"
+                    value={comment}
+                    onChange={(e) => { setComment(e.target.value) }}
+                  />
+                  <div className="comment-submit-button">
+                    <button type="submit">Submit</button>
+                  </div>
+                </form>
+                < div className="song-page-body-left-lyrics-comments" >
+                  {comments && allComments?.map(comment => (
+                    <div className="song-page-body-left-lyrics-comments-comment" key={comment.id}>
+                      <div className="song-page-body-left-lyrics-comments-comment-user">
+                        <h4>{comment?.User?.username}</h4>
+                      </div>
+                      <div className="song-page-body-left-lyrics-comments-comment-body">
+                        <h4>{comment?.body}</h4>
+                      </div>
+                    </div>
+                  ))
+                  }
                 </div>
               </div>
-            );
-        }
+            </div>
+          </div>
+        </div>
+      </div >
+      );
+      <AudioPlayer />
+    </div>
+  );
+}
+
 export default SongPage;

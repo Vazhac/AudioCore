@@ -1,6 +1,6 @@
 let express = require('express');
 const router = express.Router();
-let { User, Song } = require('../../db/models');
+let { User, Song, Comment, Album } = require('../../db/models');
 const { asyncHandler } = require('./utils')
 const { restoreUser } = require('../../utils/auth');
 
@@ -8,6 +8,29 @@ const { restoreUser } = require('../../utils/auth');
 router.get('/', asyncHandler(async (req, res) => {
     const songs = await Song.findAll()
     res.json(songs)
+}))
+
+//GET /api/songs/:id/comments - Get all comments for a song with the given id
+router.get('/:id/comments', asyncHandler(async (req, res) => {
+    // const song = await Song.findByPk(req.params.id)
+    const comments = await Comment.findAll({
+        include: User,
+        where: {
+            songId: req.params.id
+        }
+    })
+    // console.log(comments)
+    res.json(comments)
+}))
+
+//POST /api/songs/:id/comments - Create a comment for any song if the user is logged in
+router.post('/:id/comments', asyncHandler(async (req, res) => {
+    const { newComment } = req.body;
+    const { userId, body, id } = newComment;
+    // console.log(userId, body, songId)
+    console.log(newComment)
+    const comment = await Comment.create({ userId, body, songId: id });
+    res.json(comment)
 }))
 
 //GET /api/songs/:id - Get a song by id

@@ -3,9 +3,10 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom"
 import "./AlbumPage.css"
-import { deleteAlbum } from '../../store/album'
+import { deleteAlbum } from '../../store/albums'
 import EditFormModal from '../EditFormModal'
-
+import Navigation from '../Navigation';
+import AudioPlayer from '../AudioPlayer'
 
 function AlbumPage() {
   const dispatch = useDispatch();
@@ -21,9 +22,15 @@ function AlbumPage() {
 
   return (
     <div className="album-page">
+      <Navigation />
       <div className="album-page-header">
         <h1>{album.title}</h1>
+        <EditFormModal album={album} />
+        <button onClick={handleDelete}>Delete</button>
       </div>
+      <div className="album-page-songs">
+      </div>
+      <AudioPlayer />
     </div>
   );
 }

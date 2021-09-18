@@ -16,9 +16,10 @@ router.get('/:id', asyncHandler(async (req, res) => {
   res.json(album)
 }))
 
-// POST /api/albums
+// POST /api/albums - Create a new album based on the request body
 router.post('/', asyncHandler(async (req, res) => {
-  const album = await Album.create(req.body)
+  const { title, imageUrl } = req.body
+  const album = await Album.create({ title, imageUrl })
   res.json(album)
 }))
 

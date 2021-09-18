@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import './EditForm.css';
-import { editSong } from '../../store/song'
+import { editSong } from '../../store/songs'
 import { useHistory } from "react-router-dom";
 
 //ask for title and description and url for song
@@ -30,7 +30,7 @@ function EditForm({ song }) {
         } else {
             dispatch(editSong(song))
             setTitle(song.title);
-            setAlbum(song.albumId);
+            setAlbum(song.album);
             setUrl(song.url);
             return history.push(`/songs/${song.id}`);
         }

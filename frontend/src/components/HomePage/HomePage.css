@@ -1,26 +1,30 @@
 #home-page-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   margin: 0 auto;
   width: 100%;
-  min-height: 100%;
+  min-height: 100vh;
   background-color: #c2c2c2;
 }
 
 #home-page-content {
+  display: flex;
   background-color: white;
-  min-height: 100vh;
-  width: 80%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 86vh;
+  width: 80vw;
+
 }
 
-#home-page-container > p {
+ .home-page-body {
   color: black;
   margin: 0;
 }
 
-#home-page-container > h1 {
+ .home-page-title {
   color: black;
   font-size: 2.5em;
   font-weight: bold;
@@ -35,7 +39,7 @@ footer {
   justify-content: center;
   align-items: center;
   width: 80vw;
-  position: absolute;
+  /* position: absolute; */
   bottom: 96px;
   background-color: gray;
   color: white;
