@@ -6,14 +6,11 @@ import "./AlbumsPage.css"
 import { fetchAlbums } from "../../store/albums";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import Navigation from '../Navigation';
-import AudioPlayer from '../AudioPlayer'
 
 function AlbumsPage() {
   const albums = useSelector(state => state.albums.albums);
   return (
     <div className="albums-page-container">
-      <Navigation />
       <h1>Albums</h1>
       <div className="albums-page">
         {albums?.map(album => (
@@ -25,7 +22,6 @@ function AlbumsPage() {
           </div>
         ))}
       </div>
-      <AudioPlayer />
     </div>
   );
 }

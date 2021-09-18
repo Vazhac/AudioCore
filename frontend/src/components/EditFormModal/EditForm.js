@@ -58,7 +58,7 @@ function EditForm({ song }) {
                             onChange={(e) => setTitle(e.target.value)}
                         />
                     </div>
-                    <div className="edit-form-page-container-form-album">
+                    {/* <div className="edit-form-page-container-form-album">
                         <label htmlFor="album">Album</label>
                         <input
                             type="text"
@@ -67,7 +67,7 @@ function EditForm({ song }) {
                             value={album}
                             onChange={(e) => setAlbum(e.target.value)}
                         />
-                    </div>
+                    </div> */}
                     <div className="edit-form-page-container-form-url">
                         <label htmlFor="url">URL</label>
                         <input

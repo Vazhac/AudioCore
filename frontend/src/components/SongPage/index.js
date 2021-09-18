@@ -9,8 +9,6 @@ import EditFormModal from '../EditFormModal'
 import { getComments } from '../../store/comments'
 import { createComment } from '../../store/comment'
 import { fetchSongs } from '../../store/songs'
-import Navigation from '../Navigation';
-import AudioPlayer from '../AudioPlayer'
 
 function SongPage() {
   const dispatch = useDispatch()
@@ -53,7 +51,6 @@ function SongPage() {
 
   return (
     <div className="SongPage">
-      <Navigation />
       <div className="song-page">
         <div className="song-page-header">
           <div className="song-page-header-left">
@@ -70,9 +67,9 @@ function SongPage() {
                           <div className="song-page-container-right-edit">
                             {user?.id === song.userId &&
                               <EditFormModal song={song} />}
-                          </div>
-                          <div className="song-page-container-right-delete">
-                            <button onClick={handleDelete}>Delete</button>
+                            <div className="song-page-container-right-delete">
+                              <button onClick={handleDelete}>Delete</button>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -117,8 +114,6 @@ function SongPage() {
           </div>
         </div>
       </div >
-      );
-      <AudioPlayer />
     </div>
   );
 }
