@@ -5,8 +5,6 @@ import { useHistory, useParams } from "react-router-dom"
 import "./AlbumPage.css"
 import { deleteAlbum } from '../../store/albums'
 import EditFormModal from '../EditFormModal'
-import Navigation from '../Navigation';
-import AudioPlayer from '../AudioPlayer'
 
 function AlbumPage() {
   const dispatch = useDispatch();
@@ -22,7 +20,6 @@ function AlbumPage() {
 
   return (
     <div className="album-page">
-      <Navigation />
       <div className="album-page-header">
         <h1>{album.title}</h1>
         <EditFormModal album={album} />
@@ -30,7 +27,6 @@ function AlbumPage() {
       </div>
       <div className="album-page-songs">
       </div>
-      <AudioPlayer />
     </div>
   );
 }

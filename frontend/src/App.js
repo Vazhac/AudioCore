@@ -21,29 +21,36 @@ function App() {
 
   return (
     <>
-
+      <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
           <Route exact path="/">
             <HomePage />
+            <AudioPlayer />
           </Route>
           <Route exact path="/songs">
             <SongsPage />
+            <AudioPlayer />
           </Route>
           <Route exact path="/songs/:id">
             <SongPage />
+            <AudioPlayer />
           </Route>
           <Route exact path="/albums">
             <AlbumsPage />
+            <AudioPlayer />
           </Route>
           <Route exact path="/albums/:id">
             <AlbumPage />
+            <AudioPlayer />
           </Route>
           <Route exact path="/signup">
             <SignupFormPage />
+            <AudioPlayer />
           </Route>
           <Route exact path="/upload">
             <UploadFormPage />
+            <AudioPlayer />
           </Route>
         </Switch>
       )}

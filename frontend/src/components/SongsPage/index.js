@@ -6,8 +6,6 @@ import "./SongsPage.css"
 import { fetchSongs } from "../../store/songs";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import Navigation from '../Navigation';
-import AudioPlayer from '../AudioPlayer'
 
 function SongsPage() {
   const dispatch = useDispatch();
@@ -20,7 +18,6 @@ function SongsPage() {
   // Display all songs in the database
   return (
     <div id="all-songs-page-container">
-      <Navigation />
       <div id="all-songs-page-content">
         <h1>All Songs</h1>
         <ul>
@@ -33,7 +30,6 @@ function SongsPage() {
           ))}
         </ul>
       </div>
-      <AudioPlayer />
     </div>
   );
 }

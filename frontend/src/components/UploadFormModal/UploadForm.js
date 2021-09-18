@@ -53,7 +53,7 @@ function UploadForm() {
                             onChange={(e) => setTitle(e.target.value)}
                         />
                     </div>
-                    <div className="new-upload-form-page-container-form-album">
+                    {/* <div className="new-upload-form-page-container-form-album">
                         <label htmlFor="album">Album</label>
                         <input
                             type="text"
@@ -61,7 +61,7 @@ function UploadForm() {
                             value={album}
                             onChange={(e) => setAlbum(e.target.value)}
                         />
-                    </div>
+                    </div> */}
                     <div className="new-upload-form-page-container-form-url">
                         <label htmlFor="url">URL</label>
                         <input
