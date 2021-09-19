@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import EditForm from './EditForm';
-import '../Navigation/Navigation.css'
+import '../SongPage/SongPage.css'
 
 function EditFormModal({ song }) {
     const [showModal, setShowModal] = useState(false);
 
     return (
         <>
-            <button id="upload-nav-link" onClick={() => setShowModal(true)}>
-                Edit
+            <button class="edit-song-button" onClick={() => setShowModal(true)}>
+                Edit Details
             </button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
