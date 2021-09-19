@@ -36,18 +36,16 @@ function EditForm({ song }) {
     };
 
     return (
-        <div className="edit-form-page">
+        <div className="edit-form-page-container">
             <h1>Edit your song</h1>
-            <form id="edit-form-container" onSubmit={handleSubmit}>
+            <form className="edit-form" onSubmit={handleSubmit}>
                 {errors.length > 0 && (
-                    <div className="edit-form-page-container-errors">
-                        {errors.map((error, index) => (
-                            <p key={index}>{error}</p>
-                        ))}
-                    </div>
+                    <ul className="edit-form-page-container-errors">
+                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                    </ul>
                 )}
                 <div className="edit-form-elements">
-                    <div className="edit-form-page-container-form-title">
+                    <div className="edit-form-elements-title">
                         <label htmlFor="title">Title</label>
                         <input
                             type="text"
@@ -67,7 +65,7 @@ function EditForm({ song }) {
                             onChange={(e) => setAlbum(e.target.value)}
                         />
                     </div> */}
-                    <div className="edit-form-page-container-form-url">
+                    <div className="edit-form-elements-url">
                         <label htmlFor="url">URL</label>
                         <input
                             type="text"
@@ -77,7 +75,7 @@ function EditForm({ song }) {
                             onChange={(e) => setUrl(e.target.value)}
                         />
                     </div>
-                    <div className="edit-form-page-container-form-submit">
+                    <div className="edit-form-submit">
                         <button type="submit">Submit</button>
                     </div>
                 </div>

@@ -1,34 +1,42 @@
-#edit-form-container {
+.edit-form-page-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     width: 100%;
     height: 100%;
-    text-align: center;
     background-color: #fafafa;
-
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    padding: 20px;
 }
 
-.edit-form-page > h1 {
-    font-size: 2em;
+.edit-form-page-container > h1 {
     display: flex;
     justify-content: center;
     align-items: center;
     color: black;
+    font-size: 2em;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 
 .edit-form-elements {
     display: flex;
-    width: 500px;
-    height: 500px;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 
-.edit-form-page-container-form-title,
-.edit-form-page-container-form-album,
-.edit-form-page-container-form-url {
+.edit-form-elements-title,
+.edit-form-elements-url {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -40,26 +48,27 @@
     color: black;
 }
 
-#edit-form-container label {
+.edit-form-elements-title > label,
+.edit-form-elements-url > label  {
+    display: flex;
     font-size: 1.2em;
     font-weight: bold;
     color: black;
-    width: 100px;
+    margin-right: 10px;
 }
 
-#edit-form-container input {
+.edit-form-elements-title > input,
+.edit-form-elements-url > input {
     width: 100%;
     height: 40px;
-    margin: 10px 0;
-    border-radius: 5px;
     border: 1px solid #ccc;
+    border-radius: 5px;
     padding: 0 10px;
-    font-size: 1.2em;
-
+    margin-bottom: 10px;
 }
 
-#edit-form-container button {
-    width: 50%;
+.edit-form-submit > button {
+    width: 100%;
     height: 30px;
     margin: 10px;
     border-radius: 5px;
