@@ -6,7 +6,7 @@ const { restoreUser } = require('../../utils/auth');
 
 //GET /api/songs - Get the list of all songs in the database
 router.get('/', asyncHandler(async (req, res) => {
-    const songs = await Song.findAll()
+    const songs = await Song.findAll({ include: User })
     res.json(songs)
 }))
 

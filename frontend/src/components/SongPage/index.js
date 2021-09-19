@@ -63,6 +63,7 @@ function SongPage() {
                   return (
                     <div className="song-page-header-left-song-name">
                       <h1>{song?.title}</h1>
+                      <h2>{song?.User?.username}</h2>
                       <h2>{song?.url}</h2>
                       <div className="song-page-container">
                         <div className="song-page-container-left">

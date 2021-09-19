@@ -21,7 +21,7 @@ function UploadFormModal() {
                             <UploadForm />
                         </Modal>
                     ) : (
-                        <Modal >
+                        <Modal onClose={() => setShowModal(false)}>
                             <LoginForm />
                         </Modal>)
                 }</>

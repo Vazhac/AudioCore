@@ -33,9 +33,9 @@ function UploadForm() {
     };
 
     return (
-        <div className="new-upload-form-page">
+        <div className="new-upload-form-container">
             <h1>Upload a new song</h1>
-            <form id="new-upload-form-container" onSubmit={handleSubmit}>
+            <form className="new-upload-form" onSubmit={handleSubmit}>
                 {errors.length > 0 && (
                     <div className="new-upload-form-page-container-errors">
                         {errors.map((error, index) => (
@@ -44,7 +44,7 @@ function UploadForm() {
                     </div>
                 )}
                 <div className="new-upload-form-elements">
-                    <div className="new-upload-form-page-container-form-title">
+                    <div className="new-upload-form-title">
                         <label htmlFor="title">Title</label>
                         <input
                             type="text"
@@ -53,16 +53,7 @@ function UploadForm() {
                             onChange={(e) => setTitle(e.target.value)}
                         />
                     </div>
-                    {/* <div className="new-upload-form-page-container-form-album">
-                        <label htmlFor="album">Album</label>
-                        <input
-                            type="text"
-                            name="album"
-                            value={album}
-                            onChange={(e) => setAlbum(e.target.value)}
-                        />
-                    </div> */}
-                    <div className="new-upload-form-page-container-form-url">
+                    <div className="new-upload-form-url">
                         <label htmlFor="url">URL</label>
                         <input
                             type="text"
@@ -71,7 +62,7 @@ function UploadForm() {
                             onChange={(e) => setUrl(e.target.value)}
                         />
                     </div>
-                    <div className="new-upload-form-page-container-form-submit">
+                    <div className="new-upload-form-submit">
                         <button type="submit">Submit</button>
                     </div>
                 </div>

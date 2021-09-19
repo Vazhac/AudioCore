@@ -20,15 +20,19 @@ function SongsPage() {
     <div id="all-songs-page-container">
       <div id="all-songs-page-content">
         <h1>All Songs</h1>
-        <ul>
+        <div id="all-songs-page-songs">
           {songs?.map((song) => (
-            <li key={song.id}>
+            <div key={song.id}>
               <NavLink to={`/songs/${song.id}`}>
-                Track Title: {song.title}
+                <div className="track-info">
+                  <div className="post-username">Post by: {song.User.username}</div>
+                  <div className="post-title">Title: {song.title}</div>
+                  <div className="post-description">Created on: {song.createdAt}</div>
+                </div>
               </NavLink>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </div>
   );

@@ -80,20 +80,13 @@ export const editComment = (id, comment) => async dispatch => {
   }
 };
 
+// delete the selected comment from the state
+
 export const deleteComment = (id) => async dispatch => {
-  const token = await csrfFetch('/api/songs/' + id + '/comment');
-  const response = await fetch(
-    '/api/songs/' + id + '/comment',
-    {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-TOKEN': token,
-      },
-    }
-  );
-  const data = await response.json();
-  if (data.success) {
+  const response = await csrfFetch(`/api/songs/${id}/comment`, {
+    method: 'DELETE',
+  });
+  if (response.ok) {
     dispatch(removeCommentAction(id));
   }
 };
@@ -113,8 +106,10 @@ const commentsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case CREATE_COMMENT:
-      newState.comment.push(action.payload);
-      break;
+      // add the new comment to the state and return the new state
+      newState = { ...state };
+      newState[action.payload] = action.payload;
+      return newState;
     case SET_COMMENT:
       newState = action.payload;
       break;
