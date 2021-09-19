@@ -1,47 +1,56 @@
-#all-songs-page-container {
+.all-songs-page-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
   background-color: #c2c2c2;
 }
 
-#all-songs-page-content {
-  /* position: absolute; */
-  background-color: white;
-  height: 80vh;
-  width: 80%;
-}
-
-ul {
-  list-style-type: none;
-}
-
-#all-songs-page-content > div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  border-bottom: #c2c2c2 solid 1px;
-}
-
-#all-songs-page-content > h1 {
+.all-songs-page-container > h1 {
   color: black;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.all-songs-page-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  background-color: white;
+  height: 100%;
+  width: 80%;
+}
+
 .track-info {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  height: 90%;
+  margin: 0;
+  /* margin: 50px auto; */
+  margin: 0 auto;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.post-username {
+.post-username,
+.post-date,
+.post-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   text-decoration: none;
+  color: black;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.track-info:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }

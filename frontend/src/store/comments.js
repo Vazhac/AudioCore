@@ -53,12 +53,13 @@ export const createComment = (newComment) => async dispatch => {
 
 };
 
-export const fetchComment = (id) => async dispatch => {
-  const response = await csrfFetch(`/api/songs/${id}/comments`);
-  if (response.ok) {
-    const comment = await response.json();
-    dispatch(setComment(comment));
-  }
+// get a specific comment from the state by id and return it as a comment object at API route /api/songs/:id/comments/:id
+export const fetchComment = (id, commentId) => async dispatch => {
+  const response = await csrfFetch(
+    `/api/songs/${id}/comments/${commentId}`
+  );
+  const data = await response.json();
+  dispatch(setComment(data.comment));
 };
 
 export const editComment = (id, comment) => async dispatch => {

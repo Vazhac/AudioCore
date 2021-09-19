@@ -17,17 +17,17 @@ function SongsPage() {
 
   // Display all songs in the database
   return (
-    <div id="all-songs-page-container">
-      <div id="all-songs-page-content">
-        <h1>All Songs</h1>
-        <div id="all-songs-page-songs">
+    <div className="all-songs-page-container">
+      <h1>All Songs</h1>
+      <div className="all-songs-page-content">
+        <div className="all-songs-page-songs">
           {songs?.map((song) => (
             <div key={song.id}>
               <NavLink to={`/songs/${song.id}`}>
                 <div className="track-info">
                   <div className="post-username">Post by: {song.User.username}</div>
                   <div className="post-title">Title: {song.title}</div>
-                  <div className="post-description">Created on: {song.createdAt}</div>
+                  <div className="post-date">Created on: {song.createdAt}</div>
                 </div>
               </NavLink>
             </div>

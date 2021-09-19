@@ -53,21 +53,21 @@ function SongPage() {
 
 
   return (
-    <div className="SongPage">
-      <div className="song-page">
-        <div className="song-page-header">
-          <div className="song-page-header-left">
-            {songs?.map(song => {
-              {
-                if (song.id === +id) {
-                  return (
-                    <div className="song-page-header-left-song-name">
-                      <h1>{song?.title}</h1>
-                      <h2>{song?.User?.username}</h2>
-                      <h2>{song?.url}</h2>
-                      <div className="song-page-container">
-                        <div className="song-page-container-left">
-                          <button onClick={() => history.push("/songs")}>Back to Songs</button>
+    <div className="song-page">
+      <div className="song-page-header">
+        <div className="song-page-header-left">
+          {songs?.map(song => {
+            {
+              if (song.id === +id) {
+                return (
+                  <div className="song-page-header-left-song-name">
+                    <h1>{song?.title}</h1>
+                    <h2>By: {song?.User?.username}</h2>
+                    <h3>{song?.url}</h3>
+                    <div className="song-page-container">
+                      <div className="song-page-container-left">
+                        <button onClick={() => history.push("/songs")}>Back to Songs</button>
+                        {(user.id === song.User.id) ? (
                           <div className="song-page-container-right-edit">
                             {user?.id === song.userId &&
                               <EditFormModal song={song} />}
@@ -75,53 +75,59 @@ function SongPage() {
                               <button onClick={handleDelete}>Delete</button>
                             </div>
                           </div>
+                        ) : null}
+                      </div>
+                    </div>
+                    <div className="song-page-comments-container">
+                      <div className="song-page-comments-left">
+                        <div className="song-page-comments-left-header">
+                          <h1>Comments</h1>
+                        </div>
+                        <div className="song-page-comments-left-comments">
+                          {/* write a comment form */}
+                          <form className="enter-comment-form" onSubmit={handleSubmit} >
+                            <input
+                              type="text"
+                              placeholder="Write a comment"
+                              name="comment"
+                              value={comment}
+                              onChange={(e) => { setComment(e.target.value) }}
+                            />
+                            <div className="comment-submit-button">
+                              <button type="submit">Submit</button>
+                            </div>
+                          </form>
+                          < div className="song-page-body-left-lyrics-comments" >
+                            {comments && allComments?.map(comment => (
+                              <div className="song-page-body-left-lyrics-comments-comment" key={comment.id}>
+                                <div className="song-page-body-left-lyrics-comments-comment-user">
+                                  <h4>{comment?.User?.username}</h4>
+                                  {/* hide the Edit and Delete buttons if the user is not the author */}
+                                  {(user.id === comment.User.id) ? (
+                                    <div className="song-page-body-left-lyrics-comments-comment-user-edit">
+                                      <EditCommentModal comment={comment} />
+                                      <button onClick={() => handleDeleteComment(comment.id)}>Delete</button>
+                                    </div>
+                                  ) : null}
+                                </div>
+                                <div className="song-page-body-left-lyrics-comments-comment-body">
+                                  <h4>{comment?.body}</h4>
+                                </div>
+                              </div>
+                            ))
+                            }
+                          </div>
                         </div>
                       </div>
                     </div>
-                  )
-                }
-              }
-            })}
-          </div>
-          <div className="song-page-body">
-            <div className="song-page-body-left">
-              <div className="song-page-body-left-lyrics">
-                <h3>Comments</h3>
-                {/* write a comment form */}
-                <form onSubmit={handleSubmit} >
-                  <input
-                    type="text"
-                    placeholder="Write a comment"
-                    name="comment"
-                    value={comment}
-                    onChange={(e) => { setComment(e.target.value) }}
-                  />
-                  <div className="comment-submit-button">
-                    <button type="submit">Submit</button>
                   </div>
-                </form>
-                < div className="song-page-body-left-lyrics-comments" >
-                  {comments && allComments?.map(comment => (
-                    <div className="song-page-body-left-lyrics-comments-comment" key={comment.id}>
-                      <div className="song-page-body-left-lyrics-comments-comment-user">
-                        <h4>{comment?.User?.username}</h4>
-                        <EditCommentModal comment={comment} />
-                        <button onClick={() => handleDeleteComment(comment.id)}>Delete</button>
-                      </div>
-                      <div className="song-page-body-left-lyrics-comments-comment-body">
-                        <h4>{comment?.body}</h4>
-                      </div>
-                    </div>
-                  ))
-                  }
-                </div>
-              </div>
-            </div>
-          </div>
+                )
+              }
+            }
+          })}
         </div>
-      </div >
+      </div>
     </div>
   );
 }
-
 export default SongPage;

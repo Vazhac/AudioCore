@@ -55,10 +55,10 @@ export const createSong = (song) => async (dispatch) => {
   return response;
 }
 
-export const fetchSong = () => async (dispatch) => {
-  const response = await csrfFetch('/api/songs');
-  const song = await response.json();
-  dispatch(setSongAction(song));
+export const fetchSong = (id) => async (dispatch) => {
+  let response = await csrfFetch(`/api/songs/${id}`);
+  response = await response.json();
+  dispatch(setSongAction(response));
   return response;
 };
 
