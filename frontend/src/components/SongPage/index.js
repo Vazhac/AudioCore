@@ -4,11 +4,10 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom"
 import "./SongPage.css"
-import { deleteSong } from '../../store/songs'
+import { fetchSongs, deleteSong } from '../../store/songs'
 import EditFormModal from '../EditFormModal'
-import { getComments } from '../../store/comments'
-import { createComment } from '../../store/comment'
-import { fetchSongs } from '../../store/songs'
+import EditCommentModal from '../EditCommentModal'
+import { createComment, getComments, deleteComment } from '../../store/comments'
 
 function SongPage() {
   const dispatch = useDispatch()
@@ -24,6 +23,10 @@ function SongPage() {
     dispatch(getComments(+id))
   }, [dispatch])
 
+
+  const handleDeleteComment = (commentId) => {
+    dispatch(deleteComment(commentId))
+  }
 
   const handleDelete = () => {
     if (id) {
@@ -101,6 +104,8 @@ function SongPage() {
                     <div className="song-page-body-left-lyrics-comments-comment" key={comment.id}>
                       <div className="song-page-body-left-lyrics-comments-comment-user">
                         <h4>{comment?.User?.username}</h4>
+                        <EditCommentModal comment={comment} />
+                        <button onClick={() => handleDeleteComment(comment.id)}>Delete</button>
                       </div>
                       <div className="song-page-body-left-lyrics-comments-comment-body">
                         <h4>{comment?.body}</h4>
