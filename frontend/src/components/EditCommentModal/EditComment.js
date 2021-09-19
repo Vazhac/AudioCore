@@ -18,14 +18,16 @@ function EditComment({ comment }) {
     const comment = {
       body,
       id,
-      userId: sessionUser.id
+      userId: sessionUser.id,
+      createdAt: new Date("2015-03-25"),
+      updatedAt: new Date("2015-03-25"),
     }
     setErrors([]);
     if (body === "") {
       setErrors(["Please fill out all required fields"]);
     } else {
-      dispatch(editComment(comment))
       setBody(comment.body);
+      dispatch(editComment(comment))
       return history.push(`/comments/${comment.id}`);
     }
   };

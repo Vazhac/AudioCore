@@ -18,7 +18,7 @@ function UploadFormModal() {
                 <>{
                     sessionUser ? (
                         <Modal onClose={() => setShowModal(false)}>
-                            <UploadForm />
+                            <UploadForm setShowModal={setShowModal} />
                         </Modal>
                     ) : (
                         <Modal onClose={() => setShowModal(false)}>

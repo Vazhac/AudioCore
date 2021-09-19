@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import HomePage from "./components/HomePage";
-import AudioPlayer from "./components/AudioPlayer";
+// import AudioPlayer from "./components/AudioPlayer";
 import Navigation from "./components/Navigation";
 import SongPage from "./components/SongPage";
 import SongsPage from "./components/SongsPage";
@@ -26,31 +26,31 @@ function App() {
         <Switch>
           <Route exact path="/">
             <HomePage />
-            <AudioPlayer />
+            {/* <AudioPlayer /> */}
           </Route>
           <Route exact path="/songs">
             <SongsPage />
-            <AudioPlayer />
+            {/* <AudioPlayer /> */}
           </Route>
           <Route exact path="/songs/:id">
             <SongPage />
-            <AudioPlayer />
+            {/* <AudioPlayer /> */}
           </Route>
           <Route exact path="/albums">
             <AlbumsPage />
-            <AudioPlayer />
+            {/* <AudioPlayer /> */}
           </Route>
           <Route exact path="/albums/:id">
             <AlbumPage />
-            <AudioPlayer />
+            {/* <AudioPlayer /> */}
           </Route>
           <Route exact path="/signup">
             <SignupFormPage />
-            <AudioPlayer />
+            {/* <AudioPlayer /> */}
           </Route>
           <Route exact path="/upload">
             <UploadFormPage />
-            <AudioPlayer />
+            {/* <AudioPlayer /> */}
           </Route>
         </Switch>
       )}

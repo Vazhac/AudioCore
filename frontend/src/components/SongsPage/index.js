@@ -25,7 +25,7 @@ function SongsPage() {
             <div key={song.id}>
               <NavLink to={`/songs/${song.id}`}>
                 <div className="track-info">
-                  <div className="post-username">Post by: {song.User.username}</div>
+                  <div className="post-username">User: {song.User?.username}</div>
                   <div className="post-title">Title: {song.title}</div>
                   <div className="post-date">Created on: {song.createdAt}</div>
                 </div>

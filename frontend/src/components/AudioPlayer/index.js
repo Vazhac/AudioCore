@@ -7,7 +7,7 @@ const Player = () => (
   <div id="audio-player-footer">
     <AudioPlayer
       src="https://hosted-songs.s3.us-west-1.amazonaws.com/Killing%2BIn%2BThe%2BName%2B(RATM%2BRemix)+-+deadmau5.mp3"
-      onPlay={e => console.log("onPlay")}
+      onPlay={e => console.log('onPlay')}
     />
   </div>
 );

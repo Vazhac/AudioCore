@@ -19,13 +19,13 @@ router.post('/', asyncHandler(async (req, res) => {
 
 //GET /api/songs/:id - Get a song by id
 router.get('/:id', asyncHandler(async (req, res) => {
-    const song = await Song.findByPk(req.params.id)
+    const song = await Song.findByPk(req.params.id, { include: User })
     res.json(song)
 }))
 
 //PUT /api/songs/:id - Update a song by id
 router.put('/:id', asyncHandler(async (req, res) => {
-    const song = await Song.findByPk(req.params.id);
+    const song = await Song.findByPk(req.params.id, { include: User });
     const { userId, title, album, url } = req.body;
     const updatedSong = await song.update({ userId, title, album, url });
     res.json(updatedSong)
@@ -45,36 +45,37 @@ router.delete('/:id', restoreUser, asyncHandler(async (req, res) => {
 //POST /api/songs/:id/comments - Create a comment for any song if the user is logged in
 router.post('/:id/comments', asyncHandler(async (req, res) => {
     const { newComment } = req.body;
-    const { userId, body, id, createdAt } = newComment;
-    // console.log(userId, body, songId)
-    console.log(newComment)
-    const comment = await Comment.create({ userId, body, songId: id });
+    const { userId, body, id, createdAt, updatedAt } = newComment;
+    const comment = await Comment.create({ userId, body, songId: id, createdAt, updatedAt });
     res.json(comment)
 }))
 
 //GET /api/songs/:id/comments - Get all comments for a song with the given id
 router.get('/:id/comments', asyncHandler(async (req, res) => {
-    // const song = await Song.findByPk(req.params.id)
     const comments = await Comment.findAll({
         include: User,
         where: {
             songId: req.params.id
         }
     })
-    // console.log(comments)
     res.json(comments)
 }))
 
 //GET /api/songs/:id/comments/:commentId - Get a comment for a song
 router.get('/:id/comments/:commentId', asyncHandler(async (req, res) => {
-    const comment = await Comment.findByPk(req.params.commentId)
+    const comment = await Comment.findByPk(req.params.commentId, {
+        include: User,
+        where: {
+            songId: req.params.id
+        }
+    })
     res.json(comment)
 }))
 
 //DELETE /api/songs/:id/comments/:commentId - Delete a comment for a song if the user is the author
 router.delete('/:id/comments/:commentId', asyncHandler(async (req, res) => {
     let song = await Song.findByPk(req.params.id)
-    let comment = await Comment.findByPk(req.params.commentId)
+    let comment = await Comment.findByPk(song.commentId)
     if (comment.userId === req.user.id) {
         await comment.destroy()
         return res.json(comment)

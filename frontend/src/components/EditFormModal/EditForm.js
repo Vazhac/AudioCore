@@ -10,7 +10,7 @@ function EditForm({ song }) {
     const sessionUser = useSelector((state) => state.session.user);
     const id = song?.id;
     const [title, setTitle] = useState(song?.title);
-    const [album, setAlbum] = useState(song?.album);
+    // const [album, setAlbum] = useState(song?.album);
     const [url, setUrl] = useState(song?.url);
     const [errors, setErrors] = useState([]);
     const history = useHistory();
@@ -19,10 +19,10 @@ function EditForm({ song }) {
         e.preventDefault();
         const song = {
             title,
-            album: album === "" ? null : album,
+            // album: album === "" ? null : album,
             url,
             id,
-            userId: sessionUser.id
+            userId: sessionUser.id, //this is the userId of the user who is logged in
         }
         setErrors([]);
         if (title === "" || url === "") {
@@ -30,7 +30,6 @@ function EditForm({ song }) {
         } else {
             dispatch(editSong(song))
             setTitle(song.title);
-            setAlbum(song.album);
             setUrl(song.url);
             return history.push(`/songs/${song.id}`);
         }

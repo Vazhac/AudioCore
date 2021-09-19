@@ -12,7 +12,7 @@ html {
   justify-content: center;
   align-items: center;
   /* align-items: center; */
-  height: 100%;
+  height: 90%;
   width: 80%;
   margin: auto;
 }
@@ -24,6 +24,37 @@ html {
   align-items: center;
   height: 100%;
   width: 90%;
+  margin: auto;
+}
+
+.song-page-comments-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+}
+
+.song-page-comments-left-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+}
+
+.song-page-comments-left-comments {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin: auto;
 }
 
 .enter-comment-form {
@@ -33,7 +64,7 @@ html {
   align-items: center;
   height: 100%;
   width: 100%;
-  background-color: white;
+  /* background-color: white; */
 }
 
 .enter-comment-form > input {
@@ -46,4 +77,190 @@ html {
   font-size: 20px;
   font-family: "Roboto", sans-serif;
   margin-bottom: 10px;
+}
+
+.song-page-body-left-lyrics-comments {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+}
+
+.song-page-body-left-lyrics-comments-comment {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  background-color: #333;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.song-page-body-left-lyrics-comments-comment-user {
+  /* color: black; */
+  /* padding: 12px 16px; */
+  display: block;
+  height: 100%;
+  width: 100%;
+  text-decoration: none;
+  text-align: left;
+  /* margin: auto; */
+}
+
+.song-page-body-left-lyrics-comments-comment-body {
+  height: 100%;
+  width: 100%;
+  text-decoration: none;
+  margin-left: 50px;
+  display: block;
+  text-align: left;
+  /* margin: auto; */
+}
+
+.song-page-body-left-lyrics-comments-comment > h4 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+}
+
+.text-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  color:#1a1a1a;
+  margin: 50px 0;
+}
+
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  display: inline-block;
+  border-radius: 100px;
+  transition: all .2s;
+  position: absolute;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
+}
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all .4s;
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn-animated {
+  animation: moveInBottom 5s ease-out;
+  animation-fill-mode: backwards;
+}
+
+@keyframes moveInBottom {
+  0% {
+      opacity: 0;
+      transform: translateY(30px);
+  }
+
+  100% {
+      opacity: 1;
+      transform: translateY(0px);
+  }
+}
+
+.song-page-container {
+  display: flex;
+  /* flex-direction: row; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  height: 100%;
+  width: 100%;
+  margin: auto;
+}
+
+.song-page-container-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+}
+
+.song-page-container-left  button{
+  width: 100%;
+  height: 30px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  background-color: #f5f5f5;
+  color: #000;
+}
+
+.song-page-header-left-song-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+}
+
+.song-page-header-left-song-name > h1{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+}
+
+.react-player {
+  width: 100%;
+  height: 100%;
 }

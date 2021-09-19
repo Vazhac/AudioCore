@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import './UploadForm.css';
-import { createSong } from '../../store/songs'
+import { createSong, fetchSongs } from '../../store/songs'
 
 //ask for title and description and url for song
-function UploadForm() {
+function UploadForm({ setShowModal }) {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
     const [title, setTitle] = useState("");
@@ -26,6 +26,8 @@ function UploadForm() {
             setErrors(["Please fill out all required fields"]);
         } else {
             dispatch(createSong(song))
+            setShowModal(false);
+            dispatch(fetchSongs());
             setTitle("");
             setAlbum("");
             setUrl("");

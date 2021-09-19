@@ -41,14 +41,14 @@ const setComments = comments => ({
 
 export const createComment = (newComment) => async dispatch => {
   const response = await csrfFetch(
-    '/api/songs/' + newComment.id + '/comments',
+    `/api/songs/${newComment.songId}/comments`,
     {
       method: 'POST',
       body: JSON.stringify({ newComment }),
     }
   );
   const data = await response.json();
-  dispatch(createCommentAction(data.comment));
+  dispatch(createCommentAction(data.newComment));
   dispatch(getComments(data.songId));
 
 };
@@ -62,34 +62,31 @@ export const fetchComment = (id, commentId) => async dispatch => {
   dispatch(setComment(data.comment));
 };
 
-export const editComment = (id, comment) => async dispatch => {
-  const token = await csrfFetch('/api/songs/' + id + '/comment');
-  const response = await fetch(
-    '/api/songs/' + id + '/comment',
+// edit a comment by id and return the new state
+export const editComment = (comment) => async dispatch => {
+  const response = await csrfFetch(
+    `/api/songs/${comment.songId}/comments/${comment.id}`,
     {
       method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-TOKEN': token,
-      },
       body: JSON.stringify({ comment }),
     }
   );
   const data = await response.json();
-  if (data.success) {
-    dispatch(editSongAction(data.comment));
-  }
+  dispatch(editSongAction(data.comment));
+  dispatch(getComments(comment.songId));
 };
 
-// delete the selected comment from the state
-
-export const deleteComment = (id) => async dispatch => {
-  const response = await csrfFetch(`/api/songs/${id}/comment`, {
-    method: 'DELETE',
-  });
-  if (response.ok) {
-    dispatch(removeCommentAction(id));
-  }
+// delete the comment by id and return the new state with the comment removed
+export const deleteComment = (id, commentId) => async dispatch => {
+  const response = await csrfFetch(
+    `/api/songs/${id}/comments/${commentId}`,
+    {
+      method: 'DELETE',
+    }
+  );
+  const data = await response.json();
+  dispatch(removeCommentAction(commentId));
+  dispatch(getComments(id));
 };
 
 export const getComments = (id) => async dispatch => {
@@ -115,10 +112,12 @@ const commentsReducer = (state = initialState, action) => {
       newState = action.payload;
       break;
     case EDIT_COMMENT:
-      newState = action.payload;
+      newState = { ...state };
+      newState[action.payload.id] = action.payload;
       break;
     case REMOVE_COMMENT:
-      newState.comment = state.comment.filter(comment => comment.id !== action.payload);
+      newState = { ...state };
+      delete newState[action.payload];
       break;
     case SET_COMMENTS:
       newState = { ...state }

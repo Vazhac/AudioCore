@@ -3,9 +3,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import "./AlbumsPage.css"
-import { fetchAlbums } from "../../store/albums";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+// import { fetchAlbums } from "../../store/albums";
+// import { useDispatch } from "react-redux";
+// import { useEffect } from "react";
 
 function AlbumsPage() {
   const albums = useSelector(state => state.albums.albums);
