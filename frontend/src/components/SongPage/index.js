@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom"
 import "./SongPage.css"
 import { fetchSongs, deleteSong } from '../../store/songs'
+import { createComment, getComments, deleteComment } from '../../store/comments'
 import EditFormModal from '../EditFormModal'
 import EditCommentModal from '../EditCommentModal'
-import { createComment, getComments, deleteComment } from '../../store/comments'
 import ReactPlayer from 'react-player'
 
 function SongPage() {
@@ -104,6 +104,7 @@ function SongPage() {
                                   </div>
                                   {(user?.id === comment?.User?.id) ? (
                                     <div className="song-page-body-left-lyrics-comments-comment-user-edit">
+                                      {console.log(comment)}
                                       <EditCommentModal comment={comment} />
                                       <button onClick={() => handleDeleteComment(comment.id)}>Delete</button>
                                     </div>

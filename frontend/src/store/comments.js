@@ -13,16 +13,16 @@ const createCommentAction = (comment) => {
   }
 };
 
-const editSongAction = (comment) => {
+const setComment = (comment) => {
   return {
-    type: EDIT_COMMENT,
+    type: SET_COMMENT,
     payload: comment,
   }
 };
 
-const setComment = (comment) => {
+const editCommentAction = (comment) => {
   return {
-    type: SET_COMMENT,
+    type: EDIT_COMMENT,
     payload: comment,
   }
 };
@@ -68,12 +68,12 @@ export const editComment = (comment) => async dispatch => {
     `/api/songs/${comment.songId}/comments/${comment.id}`,
     {
       method: 'PUT',
+      include: 'user',
       body: JSON.stringify({ comment }),
     }
   );
-  const data = await response.json();
-  dispatch(editSongAction(data.comment));
-  dispatch(getComments(data.songId));
+  dispatch(editCommentAction(comment));
+  return response;
 };
 
 // delete the comment by id and return the new state with the comment removed

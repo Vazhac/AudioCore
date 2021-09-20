@@ -61,6 +61,15 @@ router.get('/:id/comments', asyncHandler(async (req, res) => {
     res.json(comments)
 }))
 
+//PUT /api/songs/:id/comments/:commentId - Update a comment for a song with the given id
+router.put('/:id/comments/:commentId', asyncHandler(async (req, res) => {
+    const comment = await Comment.findByPk(req.params.commentId, { include: User });
+    const { id, userId, body, songId, createdAt, updatedAt } = req.body;
+    const updatedComment = await comment.update({ id, userId, body, songId, createdAt, updatedAt });
+    res.json(updatedComment)
+}))
+
+
 //GET /api/songs/:id/comments/:commentId - Get a comment for a song
 router.get('/:id/comments/:commentId', asyncHandler(async (req, res) => {
     const comment = await Comment.findByPk(req.params.commentId, {

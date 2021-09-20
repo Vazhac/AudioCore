@@ -2,10 +2,10 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import EditComment from './EditComment';
-import '../Navigation/Navigation.css'
 
-function EditCommentModal() {
+function EditCommentModal({ comment }) {
   const [showModal, setShowModal] = useState(false);
+  console.log(comment)
 
   return (
     <>
@@ -14,7 +14,7 @@ function EditCommentModal() {
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <EditComment />
+          <EditComment comment={comment} />
         </Modal>
       )}
     </>

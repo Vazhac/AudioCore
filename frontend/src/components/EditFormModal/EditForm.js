@@ -10,7 +10,6 @@ function EditForm({ song }) {
     const sessionUser = useSelector((state) => state.session.user);
     const id = song?.id;
     const [title, setTitle] = useState(song?.title);
-    // const [album, setAlbum] = useState(song?.album);
     const [url, setUrl] = useState(song?.url);
     const [errors, setErrors] = useState([]);
     const history = useHistory();

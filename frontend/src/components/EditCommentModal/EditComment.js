@@ -2,20 +2,23 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import './EditComment.css';
 import { editComment } from '../../store/comments'
-import { useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 //ask for title and description and url for comment
 function EditComment({ comment }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const id = comment?.id;
+  const { id } = useParams();
   const [body, setBody] = useState(comment?.body);
   const [errors, setErrors] = useState([]);
   const history = useHistory();
+  console.log(comment.id);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const comment = {
+      // songId,
+      songId: +id,
       body,
       id,
       userId: sessionUser.id,
@@ -26,9 +29,9 @@ function EditComment({ comment }) {
     if (body === "") {
       setErrors(["Please fill out all required fields"]);
     } else {
-      setBody(comment.body);
       dispatch(editComment(comment))
-      return history.push(`/comments/${comment.id}`);
+      setBody(comment.body);
+      return history.push(`/songs/${id}`);
     }
   };
 
