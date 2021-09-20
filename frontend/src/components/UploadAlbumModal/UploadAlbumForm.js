@@ -36,7 +36,7 @@ function UploadAlbumForm({ setShowModal }) {
   return (
     <div className="upload-album-form-container">
       <h1> Upload Album </h1>
-      <form lassName="upload-album-form" onSubmit={handleSubmit}>
+      <form className="upload-album-form" onSubmit={handleSubmit}>
         {errors.length > 0 && (
           <div className="upload-album-form-page-container-errors">
             {errors.map((error, i) => (
@@ -45,7 +45,7 @@ function UploadAlbumForm({ setShowModal }) {
           </div>
         )
         }
-        <div className="upload-album-elements">
+        <div className="upload-album-form-elements">
           <div className="upload-album-form-title">
             <label htmlFor="title">Title</label>
             <input
