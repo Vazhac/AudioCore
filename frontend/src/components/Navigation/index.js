@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton.js';
 import LoginFormModal from '../LoginFormModal';
 import UploadFormModal from '../UploadFormModal';
+import UploadAlbumModal from '../UploadAlbumModal';
 import './Navigation.css';
 import Searchbar from './Searchbar.js';
 import LogoButton from './LogoButton.js';
@@ -40,6 +41,7 @@ function Navigation({ isLoaded }) {
                 <div id="search-bar-container">
                     <Searchbar />
                 </div>
+                <UploadAlbumModal />
                 <UploadFormModal />
                 <div id="right-nav-links" >
                     {isLoaded && sessionLinks}

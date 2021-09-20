@@ -12,7 +12,7 @@ function UploadFormModal() {
     return (
         <>
             <button id="upload-nav-link" onClick={() => setShowModal(true)}>
-                Upload
+                Upload Song
             </button>
             {showModal && (
                 <>{

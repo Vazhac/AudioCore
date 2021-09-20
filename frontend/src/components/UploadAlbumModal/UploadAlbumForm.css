@@ -1,0 +1,79 @@
+.upload-album-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 500px;
+  height: 100%;
+  background-color: #fafafa;
+  padding: 20px;
+}
+
+.upload-album-form-container > h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-size: 2em;
+}
+
+.upload-album-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.upload-album-form-elements {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.upload-album-form-title,
+.upload-album-form-url {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.upload-album-form-title > label,
+.upload-album-form-url > label {
+  display: flex;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: black;
+  margin-right: 10px;
+}
+
+.upload-album-form-title > input,
+.upload-album-form-url > input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0 10px;
+  margin-bottom: 10px;
+}
+
+
+.upload-album-form-page-container-errors {
+  color: black;
+}
+
+
+.upload-album-form-submit > button {
+  width: 50%;
+  height: 30px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  background-color: #f5f5f5;
+  color: #000;
+}

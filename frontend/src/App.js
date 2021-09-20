@@ -9,7 +9,7 @@ import SongPage from "./components/SongPage";
 import SongsPage from "./components/SongsPage";
 import AlbumPage from "./components/AlbumPage";
 import AlbumsPage from "./components/AlbumsPage";
-import UploadFormPage from "./components/UploadFormPage";
+// import UploadFormPage from "./components/UploadFormPage";
 import * as sessionActions from "./store/session";
 
 function App() {
@@ -48,10 +48,10 @@ function App() {
             <SignupFormPage />
             {/* <AudioPlayer /> */}
           </Route>
-          <Route exact path="/upload">
-            <UploadFormPage />
-            {/* <AudioPlayer /> */}
-          </Route>
+          {/* <Route exact path="/upload"> */}
+          {/* <UploadFormPage /> */}
+          {/* <AudioPlayer /> */}
+          {/* </Route> */}
         </Switch>
       )}
     </>

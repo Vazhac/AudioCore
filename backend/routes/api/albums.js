@@ -1,32 +1,34 @@
 const express = require('express');
 const router = express.Router();
-const { Album } = require("../../db/models")
+const { User, Song, Album } = require("../../db/models")
 const { asyncHandler } = require('./utils')
 const { restoreUser } = require('../../utils/auth');
 
 // GET /api/albums
 router.get('/', asyncHandler(async (req, res) => {
-  const albums = await Album.findAll()
+  const albums = await Album.findAll({ include: User });
   res.json(albums)
-}))
-
-// GET /api/albums/:id based on album id
-router.get('/:id', asyncHandler(async (req, res) => {
-  const album = await Album.findByPk(req.params.id)
-  res.json(album)
 }))
 
 // POST /api/albums - Create a new album based on the request body
 router.post('/', asyncHandler(async (req, res) => {
-  const { title, imageUrl } = req.body
-  const album = await Album.create({ title, imageUrl })
+  const { userId, title, imageUrl } = req.body
+  const album = await Album.create({ userId, title, imageUrl })
   res.json(album)
 }))
 
+// GET /api/albums/:id based on album id
+router.get('/:id', asyncHandler(async (req, res) => {
+  const album = await Album.findByPk(req.params.id, { include: User });
+  res.json(album)
+}))
+
+
 //PUT /api/albums/:id - update album based on album id
 router.put('/:id', asyncHandler(async (req, res) => {
-  const album = await Album.findByPk(req.params.id)
-  const updatedAlbum = await album.update(req.body)
+  const album = await Album.findByPk(req.params.id, { include: User });
+  const { title, imageUrl } = req.body
+  const updatedAlbum = await album.update({ userId, title, imageUrl })
   res.json(updatedAlbum)
 }))
 

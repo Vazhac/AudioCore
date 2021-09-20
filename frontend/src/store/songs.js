@@ -6,7 +6,6 @@ const EDIT_SONG = 'songs/EDIT_SONG'
 const REMOVE_SONG = 'songs/REMOVE_SONG'
 const SET_SONGS = 'songs/SET_SONGS'
 
-
 const createSongAction = (song) => {
   return {
     type: CREATE_SONG,
@@ -18,8 +17,8 @@ const editSongAction = (song) => {
   return {
     type: EDIT_SONG,
     payload: song
-  }
-}
+  };
+};
 
 const setSongAction = (song) => {
   return {
@@ -42,7 +41,6 @@ const removeSongAction = (songId) => {
   };
 };
 
-
 export const createSong = (song) => async (dispatch) => {
   let response = await csrfFetch('/api/songs', {
     method: 'POST',
@@ -56,11 +54,13 @@ export const createSong = (song) => async (dispatch) => {
   return response;
 }
 
-export const fetchSong = () => async (dispatch) => {
-  const response = await csrfFetch('/api/songs');
+export const fetchSong = (id) => async (dispatch) => {
+  const response = await csrfFetch(`/api/songs/${id}`);
   const song = await response.json();
-  dispatch(setSongAction(song));
-  return response;
+  if (response.ok) {
+    dispatch(setSongAction(song));
+    return response;
+  }
 };
 
 export const editSong = (song) => async (dispatch) => {
@@ -80,7 +80,6 @@ export const fetchSongs = () => async (dispatch) => {
   return response;
 };
 
-// delete the song from the database and remove it from the state
 export const deleteSong = (songId) => async (dispatch) => {
   const response = await csrfFetch(`/api/songs/${songId}`, {
     method: 'DELETE',
@@ -91,7 +90,6 @@ export const deleteSong = (songId) => async (dispatch) => {
   return response;
 };
 
-
 let initialState = {};
 
 const songsReducer = (state = initialState, action) => {
@@ -100,9 +98,6 @@ const songsReducer = (state = initialState, action) => {
     case CREATE_SONG:
       newState.song = action.payload;
       return newState;
-    case SET_SONG:
-      newState.songs = action.payload;
-      return newState;
     case EDIT_SONG:
       newState.songs = newState.songs.map(song => {
         if (song.id === action.payload.id) {
@@ -110,6 +105,9 @@ const songsReducer = (state = initialState, action) => {
         }
         return song;
       });
+      return newState;
+    case SET_SONG:
+      newState.songs = action.payload;
       return newState;
     case REMOVE_SONG:
       newState.songs = newState.songs.filter(song => song.id !== action.payload);

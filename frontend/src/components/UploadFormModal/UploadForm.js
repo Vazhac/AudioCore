@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import './UploadForm.css';
 import { createSong, fetchSongs } from '../../store/songs'
+import { useHistory } from "react-router-dom";
 
 //ask for title and description and url for song
 function UploadForm({ setShowModal }) {
@@ -11,10 +12,10 @@ function UploadForm({ setShowModal }) {
     const [album, setAlbum] = useState("");
     const [url, setUrl] = useState("");
     const [errors, setErrors] = useState([]);
+    const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         const song = {
             title,
             album: album === "" ? null : album,
@@ -31,6 +32,7 @@ function UploadForm({ setShowModal }) {
             setTitle("");
             setAlbum("");
             setUrl("");
+            return history.push("/songs");
         }
     };
 

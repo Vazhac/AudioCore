@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom"
 import "./SongPage.css"
-import { fetchSong, deleteSong } from '../../store/songs'
+import { fetchSongs, deleteSong } from '../../store/songs'
 import EditFormModal from '../EditFormModal'
 import EditCommentModal from '../EditCommentModal'
 import { createComment, getComments, deleteComment } from '../../store/comments'
@@ -19,9 +19,8 @@ function SongPage() {
   const comments = useSelector(state => state.comments.comments)
   const user = useSelector(state => state.session.user)
 
-
   useEffect(() => {
-    dispatch(fetchSong(id))
+    dispatch(fetchSongs())
     dispatch(getComments(id))
   }, [dispatch, id])
 

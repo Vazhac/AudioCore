@@ -1,21 +1,36 @@
 import { csrfFetch } from './csrf';
 
-const SET_ALBUM = 'SET_ALBUM';
 const CREATE_ALBUM = 'albums/CREATE_ALBUM';
+const SET_ALBUM = 'albums/SET_ALBUM';
 const EDIT_ALBUM = 'albums/EDIT_ALBUM';
 const REMOVE_ALBUM = 'albums/REMOVE_ALBUM';
 const SET_ALBUMS = 'albums/SET_ALBUMS';
 
-const createAlbumAction = album => ({
-  type: CREATE_ALBUM,
-  payload: album,
-});
+const createAlbumAction = album => {
+  return {
+    type: CREATE_ALBUM,
+    payload: album,
+  };
+};
 
+const editAlbumAction = (album) => {
+  return {
+    type: EDIT_ALBUM,
+    payload: album,
+  };
+};
 
 const setAlbumAction = (album) => {
   return {
     type: SET_ALBUM,
     payload: album,
+  };
+};
+
+const setAlbumsAction = (albums) => {
+  return {
+    type: SET_ALBUMS,
+    payload: albums,
   };
 };
 
@@ -26,80 +41,83 @@ const removeAlbumAction = (album) => {
   };
 };
 
-const setAlbums = albums => ({
-  type: SET_ALBUMS,
-  albums,
-});
-
-export const createAlbum = album => async dispatch => {
+export const createAlbum = (album) => async dispatch => {
   const response = await csrfFetch('/api/albums', {
     method: 'POST',
     body: JSON.stringify(album),
+    headers: {
+      'Content-Type': 'application/json',
+    },
   });
-  const newAlbum = await response.json();
-  dispatch(createAlbumAction(newAlbum));
+  response = await response.json();
+  dispatch(createAlbumAction(response));
+  return response;
 }
 
-export const fetchAlbum = albumId => async dispatch => {
-  const response = await csrfFetch(`/api/albums/${albumId}`);
+export const fetchAlbum = id => async (dispatch) => {
+  const response = await csrfFetch(`/api/albums/${id}`);
   const album = await response.json();
-  dispatch(setAlbumAction(album));
+  if (response.ok) {
+    dispatch(setAlbumAction(album));
+    return response;
+  }
 }
 
-export const editAlbum = albumId => async dispatch => {
-  const response = await csrfFetch(`/api/albums/${albumId}`, {
+export const editAlbum = album => async dispatch => {
+  const response = await csrfFetch(`/api/albums/${album.id}`, {
     method: 'PUT',
-    body: JSON.stringify(albumId),
+    body: JSON.stringify(album),
   });
-  const editedAlbum = await response.json();
-  dispatch(createAlbumAction(editedAlbum));
+
+  dispatch(editAlbumAction(album));
+  return response;
+}
+
+export const fetchAlbums = () => async dispatch => {
+  const response = await csrfFetch('/api/albums');
+  const albums = await response.json();
+  dispatch(setAlbumsAction(albums));
+  return response;
 }
 
 export const deleteAlbum = albumId => async dispatch => {
   const response = await csrfFetch(`/api/albums/${albumId}`, {
     method: 'DELETE',
   });
+
   dispatch(removeAlbumAction(albumId));
+  dispatch(fetchAlbums());
+  return response;
 }
 
-export const fetchAlbums = () => async dispatch => {
-  const response = await csrfFetch('/api/albums');
-  const albums = await response.json();
-  dispatch(setAlbums(albums));
-}
-
-const initialState = { albums: [] };
+const initialState = {};
 
 const albumsReducer = (state = initialState, action) => {
   let newState = { ...state };
-  switch (action.payload) {
+  switch (action.type) {
     case CREATE_ALBUM:
-      newState.albums.push(action.payload);
-      return newState;
-    case SET_ALBUM:
-      newState.album = action.payload || {};
+      newState.album = action.payload;
       return newState;
     case EDIT_ALBUM:
-      newState = Object.assign({}, state);
       newState.albums = newState.albums.map(album => {
-        if (album.id === action.album.id) {
+        if (album.id === action.payload.id) {
           return action.payload;
-        } else {
-          return album;
         }
+        return album;
       });
       return newState;
-    case SET_ALBUMS:
-      return {
-        ...state,
-        albums: action.payload
-      };
+    case SET_ALBUM:
+      newState.albums = action.payload;
+      return newState;
     case REMOVE_ALBUM:
       newState.albums = newState.albums.filter(album => album.id !== action.payload);
+      return newState;
+    case SET_ALBUMS:
+      newState.albums = action.payload;
       return newState;
     default:
       return state;
   }
-}
+};
 
 export default albumsReducer;
