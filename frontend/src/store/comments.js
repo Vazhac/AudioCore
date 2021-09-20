@@ -72,8 +72,8 @@ export const editComment = (comment) => async dispatch => {
       body: JSON.stringify({ comment }),
     }
   );
-  dispatch(editCommentAction(comment));
-  return response;
+  const data = await response.json();
+  dispatch(editCommentAction(data));
 };
 
 // delete the comment by id and return the new state with the comment removed
@@ -102,26 +102,26 @@ export const getComments = (id) => async dispatch => {
 const initialState = {};
 
 const commentsReducer = (state = initialState, action) => {
-  let newState;
+  let newState = { ...state };
   switch (action.type) {
     case CREATE_COMMENT:
       // add the new comment to the state and return the new state
-      newState = { ...state };
-      newState[action.payload] = action.payload;
+      newState.comment = action.payload;
       return newState;
     case SET_COMMENT:
-      newState = action.payload;
-      break;
+      newState.comments = action.payload;
     case EDIT_COMMENT:
-      newState = { ...state };
-      newState[action.payload.id] = action.payload;
-      break;
+      newState.comments = state.comments.map(comment => {
+        if (comment.id === action.payload.id) {
+          return action.payload;
+        }
+        return comment;
+      });
+      return newState;
     case REMOVE_COMMENT:
-      newState = { ...state };
-      delete newState[action.payload];
-      break;
+      newState.comments = newState.comments.filter(comment => comment.id !== action.payload);
+      return newState;
     case SET_COMMENTS:
-      newState = { ...state }
       newState.comments = action.payload;
       return newState;
     default:

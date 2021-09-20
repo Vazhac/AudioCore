@@ -5,7 +5,6 @@ import EditComment from './EditComment';
 
 function EditCommentModal({ comment }) {
   const [showModal, setShowModal] = useState(false);
-  console.log(comment)
 
   return (
     <>

@@ -12,7 +12,7 @@ function EditComment({ comment }) {
   const [body, setBody] = useState(comment?.body);
   const [errors, setErrors] = useState([]);
   const history = useHistory();
-  console.log(comment.id);
+  const [commentId] = useState(comment?.id);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +20,7 @@ function EditComment({ comment }) {
       // songId,
       songId: +id,
       body,
-      id,
+      id: commentId,
       userId: sessionUser.id,
       createdAt: new Date("2015-03-25"),
       updatedAt: new Date("2015-03-25"),

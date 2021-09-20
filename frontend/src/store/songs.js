@@ -98,6 +98,9 @@ const songsReducer = (state = initialState, action) => {
     case CREATE_SONG:
       newState.song = action.payload;
       return newState;
+    case SET_SONG:
+      newState.songs = action.payload;
+      return newState;
     case EDIT_SONG:
       newState.songs = newState.songs.map(song => {
         if (song.id === action.payload.id) {
@@ -105,9 +108,6 @@ const songsReducer = (state = initialState, action) => {
         }
         return song;
       });
-      return newState;
-    case SET_SONG:
-      newState.songs = action.payload;
       return newState;
     case REMOVE_SONG:
       newState.songs = newState.songs.filter(song => song.id !== action.payload);
