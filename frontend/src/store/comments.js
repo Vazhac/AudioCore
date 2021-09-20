@@ -73,20 +73,21 @@ export const editComment = (comment) => async dispatch => {
   );
   const data = await response.json();
   dispatch(editSongAction(data.comment));
-  dispatch(getComments(comment.songId));
+  dispatch(getComments(data.songId));
 };
 
 // delete the comment by id and return the new state with the comment removed
-export const deleteComment = (id, commentId) => async dispatch => {
+export const deleteComment = (comment) => async dispatch => {
+  const id = comment.songId;
   const response = await csrfFetch(
-    `/api/songs/${id}/comments/${commentId}`,
+    `/api/songs/${comment.songId}/comments/${comment.id}`,
     {
       method: 'DELETE',
     }
   );
   const data = await response.json();
-  dispatch(removeCommentAction(commentId));
-  dispatch(getComments(id));
+  dispatch(removeCommentAction(data.comment.id));
+  dispatch(getComments(data.comment.songId));
 };
 
 export const getComments = (id) => async dispatch => {

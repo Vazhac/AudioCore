@@ -1,6 +1,6 @@
 function SearchBar({ value }) {
     return (
-        <input id="search-bar" type="search" placeholder="Search for a song" value={value}></input>
+        <input id="search-bar" type="search" placeholder="Coming Soon..." value={value}></input>
     );
 }
 

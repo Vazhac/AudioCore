@@ -3,20 +3,19 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom"
 import "./AlbumPage.css"
-import { fetchAlbum, deleteAlbum } from '../../store/albums'
+import { fetchAlbums, deleteAlbum } from '../../store/albums'
 import EditAlbumModal from '../EditAlbumModal'
 
 function AlbumPage() {
   const dispatch = useDispatch();
-  const [album, setAlbum] = useState("");
   const history = useHistory();
   const { id } = useParams();
   const albums = useSelector(state => state.albums.album);
-  const comments = useSelector(state => state.comments.comments);
   const user = useSelector(state => state.session.user);
 
   useEffect(() => {
-    dispatch(fetchAlbum(id));
+    // dispatch(fetchAlbum(id));
+    dispatch(fetchAlbums());
   }, [dispatch, id]);
 
   const handleDelete = () => {
@@ -24,18 +23,10 @@ function AlbumPage() {
     history.push("/albums");
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newAlbum = {
-      userId: user.id,
-      id: +id,
-      imageUrl: album.imageUrl
-    }
-  };
-
   return (
     <div className="album-page">
       <div className="album-page-header">
+        <h1>To Do...</h1>
         <div className="album-page-header-left">
           {albums?.map(album => {
             if (album.id === +id) {
