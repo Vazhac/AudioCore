@@ -8,7 +8,7 @@ function EditFormModal({ song }) {
 
     return (
         <>
-            <button class="edit-song-button" onClick={() => setShowModal(true)}>
+            <button className="edit-song-button" onClick={() => setShowModal(true)}>
                 Edit Details
             </button>
             {showModal && (
