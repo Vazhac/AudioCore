@@ -302,7 +302,7 @@ html {
   margin: auto;
 }
 
-.text-box {
+.post-button {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -311,4 +311,8 @@ html {
   width: 100%;
   color:#1a1a1a;
   margin: 50px 0;
+}
+
+.enter-comment-form > textarea {
+  resize: none;
 }

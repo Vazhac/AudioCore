@@ -69,7 +69,7 @@ export const editComment = (comment) => async dispatch => {
     {
       method: 'PUT',
       include: 'user',
-      body: JSON.stringify({ comment }),
+      body: JSON.stringify(comment),
     }
   );
   const data = await response.json();
@@ -77,17 +77,16 @@ export const editComment = (comment) => async dispatch => {
 };
 
 // delete the comment by id and return the new state with the comment removed
-export const deleteComment = (comment) => async dispatch => {
-  const id = comment.songId;
+export const deleteComment = (id, commentId) => async dispatch => {
   const response = await csrfFetch(
-    `/api/songs/${comment.songId}/comments/${comment.id}`,
+    `/api/songs/${id}/comments/${commentId}`,
     {
       method: 'DELETE',
     }
   );
   const data = await response.json();
-  dispatch(removeCommentAction(data.comment.id));
-  dispatch(getComments(data.comment.songId));
+  dispatch(removeCommentAction(commentId));
+  dispatch(getComments(id));
 };
 
 export const getComments = (id) => async dispatch => {
@@ -119,7 +118,7 @@ const commentsReducer = (state = initialState, action) => {
       });
       return newState;
     case REMOVE_COMMENT:
-      newState.comments = newState.comments.filter(comment => comment.id !== action.payload);
+      newState.comments = state.comments.filter(comment => comment.id !== action.payload);
       return newState;
     case SET_COMMENTS:
       newState.comments = action.payload;

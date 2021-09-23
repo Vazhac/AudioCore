@@ -29,7 +29,8 @@ function SongPage() {
   }
 
   const handleDeleteComment = (comment) => {
-    dispatch(deleteComment(comment?.id))
+    console.log(comment)
+    dispatch(deleteComment(id, comment))
   }
 
   const handleSubmit = (e) => {
@@ -82,15 +83,16 @@ function SongPage() {
                         </div>
                         <div className="song-page-comments-left-comments">
                           <form className="enter-comment-form" onSubmit={handleSubmit} >
-                            <input
-                              type="text"
+                            <textarea
+                              rows="10"
+                              cols="75"
                               placeholder="Write a comment"
                               name="comment"
                               value={comment}
                               onChange={(e) => { setComment(e.target.value) }}
                             />
                           </form>
-                          <div className="text-box">
+                          <div className="post-button">
                             <a href="#" onClick={handleSubmit} className="btn btn-white btn-animate">Post a comment</a>
                           </div>
                           < div className="song-page-body-left-lyrics-comments" >
@@ -104,9 +106,8 @@ function SongPage() {
                                   </div>
                                   {(user?.id === comment?.User?.id) ? (
                                     <div className="song-page-body-left-lyrics-comments-comment-user-edit">
-                                      {console.log(comment)}
                                       <EditCommentModal comment={comment} />
-                                      <button onClick={() => handleDeleteComment(comment.id)}>Delete</button>
+                                      <button onClick={() => handleDeleteComment(comment?.id)}>Delete</button>
                                     </div>
                                   ) : null}
                                 </div>
