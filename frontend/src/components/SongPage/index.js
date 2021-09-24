@@ -25,11 +25,10 @@ function SongPage() {
 
   const handleDelete = () => {
     dispatch(deleteSong(+id))
-    history.push('/')
+    history.push('/songs')
   }
 
   const handleDeleteComment = (comment) => {
-    console.log(comment)
     dispatch(deleteComment(id, comment))
   }
 

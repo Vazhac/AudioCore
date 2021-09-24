@@ -28,8 +28,8 @@ const AlbumsPage = () => {
           ) : (
             albums?.map(album => (
               <div className="album-container" key={album.id}>
-                <NavLink to={`/albums/${album.id}`}>
                   <img src={album.imageUrl} alt={album.title} />
+                <NavLink to={`/albums/${album.id}`}>
                   <h3>{album.title}</h3>
                 </NavLink>
               </div>

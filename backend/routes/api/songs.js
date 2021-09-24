@@ -84,7 +84,7 @@ router.get('/:id/comments/:commentId', asyncHandler(async (req, res) => {
 //DELETE /api/songs/:id/comments/:commentId - Delete a comment for a song if the user is the author
 router.delete('/:id/comments/:commentId', restoreUser, asyncHandler(async (req, res) => {
     const comment = await Comment.findByPk(req.params.commentId)
-    // console.log(comment)
+
     if (comment.userId === req.user.id) {
         await comment.destroy()
         res.json({ success: true })
