@@ -24,7 +24,7 @@ html {
   padding: 15px 40px;
   display: inline-block;
   border-radius: 100px;
-  transition: all .2s;
+  transition: all 0.2s;
   position: absolute;
 }
 
@@ -53,7 +53,7 @@ html {
   top: 0;
   left: 0;
   z-index: -1;
-  transition: all .4s;
+  transition: all 0.4s;
 }
 
 .btn-white::after {
@@ -70,15 +70,26 @@ html {
   animation-fill-mode: backwards;
 }
 
+.post-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  color: #1a1a1a;
+  margin: 50px 0;
+}
+
 @keyframes moveInBottom {
   0% {
-      opacity: 0;
-      transform: translateY(30px);
+    opacity: 0;
+    transform: translateY(30px);
   }
 
   100% {
-      opacity: 1;
-      transform: translateY(0px);
+    opacity: 1;
+    transform: translateY(0px);
   }
 }
 
@@ -101,7 +112,7 @@ html {
   margin: auto;
 }
 
-.song-page-header-left-song-name > h1{
+.song-page-header-left-song-name > h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -125,7 +136,7 @@ html {
   margin: auto;
 }
 
-.song-page-container-left  button{
+.song-page-container-left button {
   width: 20%;
   height: 30px;
   margin: 10px;
@@ -178,7 +189,7 @@ html {
   color: #000;
 }
 
-.song-page-container-left  button:hover,
+.song-page-container-left button:hover,
 .song-page-container-right-delete > button:hover,
 .edit-song-button:hover {
   background-color: #e5e5e5;
@@ -302,17 +313,15 @@ html {
   margin: auto;
 }
 
-.post-button {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  color:#1a1a1a;
-  margin: 50px 0;
-}
-
 .enter-comment-form > textarea {
+  width: 100%;
+  height: 250px;
+  border: none;
+  border-bottom: 1px solid white;
+  /* background-color: transparent; */
+  /* color: white; */
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  margin-bottom: 10px;
   resize: none;
 }

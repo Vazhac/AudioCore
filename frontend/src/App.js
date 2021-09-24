@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import HomePage from "./components/HomePage";
-import AudioPlayer from "./components/AudioPlayer";
+// import AudioPlayer from "./components/AudioPlayer";
 import Navigation from "./components/Navigation";
 import SongPage from "./components/SongPage";
 import SongsPage from "./components/SongsPage";
