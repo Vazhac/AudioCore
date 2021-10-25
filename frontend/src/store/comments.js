@@ -85,7 +85,7 @@ export const deleteComment = (id, commentId) => async dispatch => {
     }
   );
   const data = await response.json();
-  dispatch(removeCommentAction(commentId));
+  dispatch(removeCommentAction(data.commentId));
   dispatch(getComments(id));
 };
 
@@ -109,6 +109,7 @@ const commentsReducer = (state = initialState, action) => {
       return newState;
     case SET_COMMENT:
       newState.comments = action.payload;
+      break;
     case EDIT_COMMENT:
       newState.comments = state.comments.map(comment => {
         if (comment.id === action.payload.id) {

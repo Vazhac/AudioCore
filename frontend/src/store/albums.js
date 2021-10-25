@@ -42,7 +42,7 @@ const removeAlbumAction = (album) => {
 };
 
 export const createAlbum = (album) => async dispatch => {
-  const response = await csrfFetch('/api/albums', {
+  let response = await csrfFetch('/api/albums', {
     method: 'POST',
     body: JSON.stringify(album),
     headers: {

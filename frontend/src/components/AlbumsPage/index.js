@@ -27,12 +27,12 @@ const AlbumsPage = () => {
             <h2>No albums to display</h2>
           ) : (
             albums?.map(album => (
-              <div className="album-container" key={album.id}>
+              <NavLink to={`/albums/${album.id}`}>
+                <div className="album-container" key={album.id}>
                   <img src={album.imageUrl} alt={album.title} />
-                <NavLink to={`/albums/${album.id}`}>
                   <h3>{album.title}</h3>
-                </NavLink>
-              </div>
+                </div>
+              </NavLink>
             ))
           )}
         </div>

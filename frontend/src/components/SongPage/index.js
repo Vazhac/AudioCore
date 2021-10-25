@@ -37,7 +37,8 @@ function SongPage() {
     const newComment = {
       id: +id,
       body: comment,
-      userId: user?.id
+      userId: user?.id,
+      createdAt: new Date ()
     }
     dispatch(createComment(newComment))
   }
@@ -54,7 +55,6 @@ function SongPage() {
       <div className="song-page-header">
         <div className="song-page-header-left">
           {songs?.map(song => {
-            {
               if (song.id === +id) {
                 return (
                   <div className="song-page-header-left-song-name">
@@ -98,10 +98,12 @@ function SongPage() {
                             {comments && allComments?.map(comment => (
                               <div className="song-page-body-left-lyrics-comments-comment" key={comment.id}>
                                 <div className="song-page-body-left-lyrics-comments-comment-user">
-                                  <h4>{comment?.User?.username}:</h4>
+                                  <h2>{comment?.User?.username}:</h2>
                                   <div className="song-page-body-left-lyrics-comments-comment-body">
-                                    <h4>{comment?.body}</h4>
-                                    {/* <h4>{comment?.updateddAt}</h4> */}
+                                    <h3>{comment?.body}</h3>
+                                    <div className="date-info"></div>
+                                    <h5>{comment?.createdAt}</h5>
+                                    <h5>Editted on: {comment?.updatedAt}</h5>
                                   </div>
                                   {(user?.id === comment?.User?.id) ? (
                                     <div className="song-page-body-left-lyrics-comments-comment-user-edit">
@@ -120,7 +122,6 @@ function SongPage() {
                   </div>
                 )
               }
-            }
           })}
         </div>
       </div>
