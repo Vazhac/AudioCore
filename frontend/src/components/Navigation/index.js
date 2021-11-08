@@ -38,9 +38,9 @@ function Navigation({ isLoaded }) {
                     <NavLink id="songs-nav-link" to="/songs">Songs</NavLink>
                     <NavLink id="albums-nav-link" to="/albums">Albums</NavLink>
                 </div>
-                <div id="search-bar-container">
+                {/* <div id="search-bar-container">
                     <Searchbar />
-                </div>
+                </div> */}
                 <UploadAlbumModal />
                 <UploadFormModal />
                 <div id="right-nav-links" >
