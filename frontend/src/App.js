@@ -49,10 +49,6 @@ function App() {
             <SignupFormPage />
             {/* <AudioPlayer /> */}
           </Route>
-          {/* <Route exact path="/upload"> */}
-          {/* <UploadFormPage /> */}
-          {/* <AudioPlayer /> */}
-          {/* </Route> */}
         </Switch>
       )}
     </>
