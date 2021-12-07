@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import sessionReducer from './session';
 import songs from './songs'
 import comments from './comments';
-// import albums from './albums';
+import albums from './albums';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
